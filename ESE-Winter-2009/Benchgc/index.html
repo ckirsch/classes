@@ -1,0 +1,34 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>CKWiki | ESE-Winter-2009 / Benchgc </title>
+</head>
+<body>
+<h1>Short-term Memory for Self-collecting Mutators: Benchmarks</h1>
+<p class='vspace'></p><p>Benchmarking the new real time memory management system AGC, which uses refreshing-semantics instead of expiration-semantics: An object can be overwritten if it is not refreshed.  
+</p><p class='vspace'></p>
+<p><strong>Team:</strong>
+</p><ul><li>Andreas Haas
+</li><li>Andreas Schönegger
+</li></ul><p class='vspace'></p><p>We are looking for benchmarks which demonstrate the good properties of the AGC memory management system developed by Andreas Haas. 
+</p><p class='vspace'></p>
+<p>We want to get three kinds of results:
+</p><p class='vspace'></p>
+<ul><li>Overall Performance: We estimate that our system is faster than garbage collected systems, because we do not have the overhead of garbage collection. We just overwrite old objects which we believe to be dead.
+</li><li>Latency. We want to show that our system does not have much jitter in the time needed for allocation. All of our benchmarks have a regular main-loop. We measure the time needed for 1 loop iteration. It should be nearly constant in AGC, whereas for garbage collected systems there should be peaks when garbage collection is executed.
+</li><li>Memory Consumption: The memory consumption of a garbage collected system looks like a saw-tooth-curve. In our system we estimate a constant memory consumption.
+</li></ul><p class='vspace'></p><p>First implemented Benchmarks:
+</p><p class='vspace'></p>
+<p class='vspace'></p><ul><li>Monte Carlo Benchmark of the Grande Java Benchmark Suite &lt;J. A. Mathew, P. D. Coddington, and K. A. Hawick. Analysis and development of java grande benchmarks. In JAVA '99: Proceedings of the ACM 1999 conference on Java Grande, pages 7280, New York, NY, USA, 1999. ACM. 59, 64&gt;
+</li><li>The jLayer mp3 encoder
+</li></ul><p class='vspace'></p><p>Documentation: <a class='urllink' href='Documentation.pdf' rel='nofollow'>Documentation.pdf</a>
+Presentation: <a class='urllink' href='Slides.pdf' rel='nofollow'>Slides.pdf</a>
+</p><p class='vspace'></p>
+<p class='vspace'></p></div>
+
+      </td>
+    </tr></table>
+</body>
+</html>

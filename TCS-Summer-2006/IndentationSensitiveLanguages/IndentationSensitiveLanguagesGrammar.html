@@ -1,0 +1,38 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>CKWiki | TCS-Summer-2006 / IndentationSensitiveLanguagesGrammar </title>
+</head>
+<body>
+<p><a class='wikilink' href='../index.html'>IndentationSensitiveLanguages</a>
+</p><p class='vspace'></p>
+<p>Indentation obviously requires the ability to count and to remember some counters. 
+</p><p class='vspace'></p>
+<h2>Definition</h2>
+<p>An indentation sensitive grammar is defined by
+</p><ul><li><code>V</code>: finite set of variables
+</li><li><code>Sigma</code>: finite set of terminals
+</li><li><code>R</code>: finite set of rules. Each rule starts with a string of exactly one variable and 0 or 1 counter and yields a string of variables, terminals, and counters.
+</li><li><code>C</code>: finite set of counters. C = { C<sub>t</sub><sup>n</sup> | t in Sigma and n is a natural number}
+</li><li><code>S</code>: start variable
+</li></ul><p class='vspace'></p><p>where
+</p><p class='vspace'></p>
+<p>C<sub>t</sub><sup>0</sup> := epsilon  <br />C<sub>t</sub><sup>n+1</sup> := C<sub>t</sub><sup>n</sup> t
+</p><p class='vspace'></p>
+<h2>Example</h2>
+<p class='vspace'></p><p>Let's consider a simplified language that has a statement requiring nesting <code>a</code> (e.g. a <code>while</code>-statement), a simple statement <code>b</code> (e.g. assignment), and a symbol for indentation <code>t</code> (e.g. \t). We may generate a program by the following grammar:
+</p><p class='vspace'></p>
+<p>S -&gt; C<sub>t</sub><sup>0</sup> E 
+</p><p class='vspace'></p>
+<p>C<sub>t</sub><sup>n</sup> E -&gt; C<sub>t</sub><sup>n</sup> E C<sub>t</sub><sup>n</sup> E | C<sub>t</sub><sup>n</sup> N | C<sub>t</sub><sup>n</sup> b | epsilon 
+</p><p class='vspace'></p>
+<p>C<sub>t</sub><sup>n</sup> N -&gt; C<sub>t</sub><sup>n</sup> a C<sub>t</sub><sup>n+1</sup> E
+</p><p class='vspace'></p>
+<p class='vspace'></p></div>
+
+      </td>
+    </tr></table>
+</body>
+</html>

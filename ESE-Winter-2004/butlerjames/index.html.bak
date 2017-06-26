@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>ESE - Connected Containers</title>
+</head>
+
+<body text="#000000" link="#0000ff" vlink="#800080" bgcolor="#ffffff" background="./pics/Image4.jpg">
+<br><hr>
+<P ALIGN=CENTER STYLE="margin-bottom: 0cm"><FONT SIZE=5>E</FONT>MBEDDED <FONT SIZE=5>S</FONT>OFTWARE <FONT SIZE=5>E</FONT>NGINEERING</P>
+<hr><br>
+<H1 ALIGN=CENTER><FONT COLOR="#800040" FACE="Arial, Helvetica" SIZE=10>Butler James</FONT></H1>
+<br>
+<center>
+<h2>TEAM</h2>
+<table border='3' width='25%' bgcolor='#fffff8'>
+<tr>
+<td align='center'><b><font size='4'><a href="mailto:maier.manuel@gmx.at">Manuel Maier</a></font></b></td><td align='center'><b>9920441</b></td>
+</tr>
+<tr>
+<td align='center'><b><font size='4'><a href="mailto:harald.roeck@gmx.at">Harald Roeck</a></font></b></td><td align='center'><b>0020744</b></td>
+</tr>
+<tr>
+<td align='center'><b><font size='4'><a href="mailto:werner.hager@gmx.at">Werner Hager</a></font></b></td><td align='center'><b>9922559</b></td>
+</tr>
+</table>
+
+<br><br>
+</center>
+
+
+<h2>Table of Contents</h2>
+<P><A HREF="#abstract"><FONT SIZE=4>Abstract</FONT></A></P>
+<P><A HREF="#james"><FONT SIZE=4>Roboter James and utensils</FONT></A></P>
+<P><A HREF="#os"><FONT SIZE=4>Operating System and programming language</FONT></A></P>
+<P><A HREF="#modi"><FONT SIZE=4>Software Modi</FONT></A></P>
+<P><A HREF="#tasks"><FONT SIZE=4>Software Tasks</FONT></A></P>
+
+<br>
+<A NAME="abstract"></A>
+<h2>ABSTRACT</h2>
+<font size='4'>
+James is a LEGO-mindstorm-roboter. He lives in a small room with a plant and one window. James' job is to check 
+that the plant is getting enough light.<br>
+Sometimes the window changes its position in the room.<br>
+So James always has to put the plant to the window, if the window changes its position.
+</font>
+<br><br>
+<table border='0' width='90%'>
+<tr><th width='33%' align='center'>START</td><th width='34%'align='center'>WORKING</td><th width='33%' align='center'>END</td></tr>
+</table>
+<img width='30%' border='2' src='./pics/bild1.jpg'>
+<img width='30%' border='2' src='./pics/bild2.jpg'>
+<img width='30%' border='2' src='./pics/bild3.jpg'>
+<br><br><font size='4'>
+We are going to use a candle and a piece of lego instead of the window and the plant.
+</font>
+<br><br>
+
+<A NAME="james"></A>
+<h2>Roboter James and utensils</h2>
+<font size='4'>Here you can see our roboter James:<br><br>
+<img border=2 height='250' src='./pics/james1.jpg'>
+<img border=2 height='250' src='./pics/james2.jpg'>
+<img border=2 height='250' src='./pics/james3.jpg'>
+<br><br><br>
+That's the plant, the light source and the room. The black line is the border of the room and James must not leave the room.
+</font><br><br>
+<img border=2 height='250' src='./pics/plant.jpg'>
+<img border=2 height='250' src='./pics/light.jpg'>
+<img border=2 height='250' src='./pics/room.jpg'>
+
+<br><br>
+
+
+<A NAME="os"></A>
+<h2>Operating System and programming language</h2>
+<font size='4'>
+We use the BrickOS as operating system for the RCX and the programming language C.
+</font>
+
+<br><br>
+
+<A NAME="modi"></A>
+<h2>Software Modi</h2>
+<font size='4'>
+We have four software modi in our System:<br>
+<ol>
+	<li>Seeking for the plant in the room (circle) - when James is seeking for the plant the first time</li>
+	<li>Seeking for the window (where the candle's position is close to the room)</li>
+	<li>Seeking for the plant on the circle - when James has done his job some times before, the plant stands on the circle</li>
+	<li>Observe the window - if the window changes its position, James has to work</li>
+</ol>
+</font>
+
+<br>
+
+<A NAME="tasks"></A>
+<h2>Software Tasks</h2>
+<font size='4'>
+<ul>
+	<li>Check room-line: Modi</li>
+	<li>Find window: Modi</li>
+	<li>Touch sensor: Modi</li>
+	<li>Raise plant: Modi</li>
+	<li>Put plant: Modi</li>
+	<li>Follow room-line: Modi</li>
+	<li>Observe window: Modi</li>
+</ul>
+</font>
+
+</body>

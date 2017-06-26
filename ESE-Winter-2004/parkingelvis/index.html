@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Parking</title>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta content="Microsoft FrontPage 5.0" name="GENERATOR"></head>
+<body alink="#ff0000" bgcolor="#ffffff" link="#0000ef" text="#000000" vlink="#51188e">
+<p style="margin-bottom: 0cm;" align="center"><font size="4">E</font>MBEDDED <font size="4">S</font>OFTWARE <font size="4">E</font>NGINEERING</p>
+<hr noshade="noshade" size="1" width="100%">
+<p>&#160;<img border="0" src="logo-small.jpg" width="57" height="41"></p>
+
+<h2>Parking Elvis</h2>
+<p style="margin-bottom: 1cm;" align="left"><font size="4">back into a parking space</font></p>
+<hr noshade="noshade" size="1" width="100%">
+
+<p>&#160;</p>
+<p><b><u>Team</u></b></p>
+<ul>
+  <li><a href="mailto:rup_g@gmx.at">Rupert Gratz</a>
+  </li><li><a href="mailto:hallo_lacki@gmx.at">Matthias Lackenbucher</a></li></ul>
+<p>&#160;</p>
+<p><b><u>Idea</u></b></p>Develop and implement a&#160; Lego Mindstorm car, which 
+is parking automatically into a free parking place
+<p></p>
+<p>&#160;</p>
+<p><img border="0" src="Grafik1.jpg" width="506" height="232"></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><u><b>Implementation</b></u></p>
+<p><u>Car:</u></p>
+<p>The car is equipped with a light sensor and two motors. The first motor is 
+for driving forward or backward the second motor is to direct the car. (it works 
+like a real car)</p>
+<p><u>Environment:</u></p>
+<p>The environment consists of 2 white boxes which delimit the parking space. </p>
+<p><u>Conditions</u></p>
+<ul>
+<li>The car shall reverse into the parking slot
+</li><li>The car should never touch a box.</li></ul>
+
+<p><u>Action:</u></p>
+<p>The car will be disposed beside the first white box. Then the program will 
+get started.<br>While the car is driving forward it will get data from the light 
+sensor. When the brightness of the environment is changing, the program knows: 
+this is the beginning of the parking slot.<br>When the brightness is changing 
+next, the parking slot will end. From the speed the car drives and the time from 
+the first to the second box, the program can compute if there is enough place 
+for parking. (The speed of the car is predefined).<br>When the parking place is large enough, the parking sequence will be 
+launched.<br><u>parking sequence:</u> The angle of turn as well as the time the car will drive back will depend on the length of 
+the parking slot. By driving backwards 
+the program will compute the angle the car reaches from the rounds of two 
+motors. A predefined angle can not be passed over, as it can not drive the hole 
+way with the same angle. The angel for driving back has to change after a 
+specific way (in relation of the whole lenght&#160; of the parking slot). When 
+the computed way for driving back is reached, the car will change the angle of 
+turn and drive forward a computed time. </p>
+<p>&#160;</p>
+<p>&nbsp;</p>
+<p><u><b>The Program:</b></u></p>
+<p>The control of the car is carried out by the developed EMachine. The program 
+which controls the car consists of E- and S-code. </p>
+<p>&nbsp;</p>
+<p><b>Task description </b></p>
+<p>&nbsp;</p>
+<p><img border="0" src="system-diagramm.jpg" width="863" height="268"></p>
+<p>&nbsp;</p>
+<p><u>acceleration task:</u> The acceleration task controls one motor which executes 
+the forward or backward moving of the car. </p>
+<p><u>steering task:</u> This task controls the second motor which moves the 
+front wheels left or right.</p>
+<p><u>calculate position task:</u> This task is invoked when the acceleration 
+task is executed, and it computes the actual position of the car. The 
+computation consists of the two tasks, acceleration and steering task. The 
+position depends of the angel of the steering wheels and the time the car drives 
+in a direction with this angel. The output is written in the <i>current position
+</i>environment through the <i>write current position</i> port. The e-machine reads the 
+current position out through the <i>read from environment</i> port.</p>
+</br><p><b><u>Programming Language</u></b></p>
+<p>Java</p>
+<p><b><u>Operating system on RCX:</u></b></p>
+<p>leJOS</p>
+<p><u><b>Tecnical Implementation:</b></u></p>
+<p>The E- and S-Machine, whereon the code will be executed, are running on a PC. 
+This means all computations are executed on a PC.</br>The car will get the 
+instructions via the infrared sensor.
+A java program, 
+<a href="http://rcxtools.sourceforge.net/" style="text-decoration: none">Rcxdirect</a>, 
+runs on the 
+RCX and receives and executes the 
+instructions from the PC. The Advantage resulting from this method consists of, 
+we have now much more resources for our programm, because we are not bounded to 
+the limited capacity of the lejos and the RCX.</p>
+<p>&nbsp;</p>
+<p>&#160;</p>
+<p>&#160;</p>
+<hr noshade="noshade" size="1" width="100%">
+
+<center>Last modified: Monday, 13-Dez-2004</center></body></html>

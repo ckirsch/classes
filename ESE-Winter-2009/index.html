@@ -1,0 +1,483 @@
+
+<html> 
+ 
+<head> 
+<title>Embedded Software Engineering Course</title> 
+</head> 
+ 
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000"> 
+ 
+<table width="768"> 
+<tr> 
+<td> 
+ 
+<h2>Embedded Software Engineering Course, Winter 2009/2010</h2> 
+ 
+<h3> 
+<a href="http://www.cs.uni-salzburg.at/~ck">Prof. Kirsch</a> and
+<a href="http://www.cs.uni-salzburg.at/~anas">Dr. Sokolova</a>,
+<a href="http://www.cs.uni-salzburg.at">Department of Computer Sciences</a>,
+<a href="http://www.uni-salzburg.at">University of Salzburg</a> 
+</h3> 
+ 
+<hr SIZE=1 NOSHADE WIDTH="100%"> 
+ 
+<P> 
+ 
+Time, Location: Tue 3-4, Th 10-12 in T04, Techno-Z.
+First lecture on Tue, Oct 6, 3-4.
+Check <a href="http://www.google.com/calendar/embed?src=8sic4boj129rm0k4k85g428s7k%40group.calendar.google.com&ctz=Europe/Vienna">schedule</a> (<a href="http://www.google.com/calendar/ical/8sic4boj129rm0k4k85g428s7k%40group.calendar.google.com/public/basic.ics">iCal</a>) for updates.
+ 
+<P> 
+ 
+Brief Overview:
+ 
+<P> 
+ 
+This course will provide an introduction to embedded software
+engineering: the first part covers operating-system-level aspects such
+as real-time scheduling, real-time memory management, and real-time
+communication; the second part focuses on higher-level aspects such as
+real-time programming languages, coordination languages, models for
+real-time and embedded systems and methods for their verification.
+The course begins with an introduction to real-time operating system
+concepts using
+Salzburg's <a href="http://tiptoe.cs.uni-salzburg.at">Tiptoe</a> 
+system as example.  Basic real-time scheduling techniques such as
+rate-monotonic (RMS) and earliest deadline first (EDF) scheduling will
+be illustrated, followed by more advanced techniques such as
+Salzburg's variable-bandwidth servers
+(<a href="http://tiptoe.cs.uni-salzburg.at/scheduler">VBS</a>).
+Real-time memory management will be discussed from basic concepts to
+more advanced techniques such as
+Salzburg's <a href="http://tiptoe.cs.uni-salzburg.at/compact-fit">Compact-fit</a> 
+system.  Next are real-time communication protocols such as the
+time-triggered protocol (<a href="http://www.tttech.com">TTP</a>) and
+the event-triggered <a href="http://www.can.bosch.com">CAN</a> 
+protocol.  The second half of the course emphasizes real-time
+programming, coordination, and verification for real-time and embedded
+systems.  The high-level embedded programming and coordination
+languages <a href="http://www-verimag.imag.fr/SYNCHRONE/">Lustre</a>,
+<a href="http://embedded.eecs.berkeley.edu/giotto/">Giotto</a>, and
+Salzburg's <a href="http://htl.cs.uni-salzburg.at">HTL</a> will be
+presented.  Code generation for HTL will be discussed based on a
+virtual machine architecture called the Embedded Machine.  The end of
+the course will focus on more formal aspects of real-time and embedded
+systems, in particular, timed automata and other formalisms for
+modelling timed systems, and an overview of methods for their
+verification.
+ 
+<P> 
+ 
+Goal of the course:
+ 
+<P> 
+ 
+Learn how to evaluate applications with real-time requirements, identify
+adequate programming paradigm and platform, implement applications with
+real-time requirements, and verify their correctness.
+ 
+<P> 
+ 
+Assignments:
+ 
+<ul> 
+<li> 
+Each student is expected to prepare for certain lectures by reading the papers listed below.
+</li> 
+ 
+<li> 
+There will be one exam (written test) on Tuesday, January 26, 2010 at 3pm.
+</li> 
+ 
+<li> 
+Teams of 2-3 students will develop and implement embedded software
+projects, e.g., on Motes or Gumstix, present and give demos of their
+projects at the end of the semester, and write project reports that
+could eventually result in publications.  Each team creates
+a wiki page that describes the project.
+</li> 
+</ul> 
+
+<P>
+
+List of Projects:
+
+<ul><li><a class='wikilink' href='Vapsbee/index.html'>VapsBee</a>
+</li><li><a class='wikilink' href='Rantanplan/index.html'>Rantanplan</a>
+</li><li><a class='wikilink' href='Benchgc/index.html'>BenchGC</a>
+</li><li><a class='wikilink' href='AudioFX/index.html'>AudioFX</a>
+</li></ul>
+
+<hr SIZE=1 NOSHADE WIDTH="100%"> 
+ 
+<P> 
+ 
+Recommended Textbooks:
+ 
+<ul> 
+<li> 
+Hard Real-Time Computing Systems: Predictable Scheduling Algorithms & Applications
+by Giorgio C. Buttazzo.
+Kluwer, 1997.
+</li> 
+ 
+<li> 
+Real-Time Systems: Design Principles for Distributed Embedded Applications
+by Hermann Kopetz.
+Kluwer, 1997.
+</li> 
+ 
+<li> 
+Reactive Systems: Modelling, Specification and Verification
+by Luca Aceto, Anna Ingolsfdottir, Kim G. Larsen and Jiri Srba.
+Cambridge University Press, 2007.
+</li> 
+</ul> 
+ 
+<hr SIZE=1 NOSHADE WIDTH="100%"> 
+ 
+<P> 
+ 
+Schedule and slides:
+ 
+<ul> 
+<li> 
+Week 1, Tuesday 6.10.09: Introduction <a href="Intro.pdf">slides</a>. 
+Thursday, 8.10.09: Scheduling <a href="Scheduling1.pdf">slides</a>. 
+</li> 
+ 
+<li> 
+Week 2, Tuesday 13.10.09: Scheduling (continued) <a href="Scheduling2.pdf">slides</a>.
+Thursday, 15.10.09: no class.
+</li> 
+ 
+<li> 
+Week 3, Tuesday 20.10.09: The proof for EDF (blackboard) <a href="Scheduling3.pdf">slides</a>.
+Thursday, 22.10.09: Rate monotonic scheduling <a href="Scheduling4.pdf">slides</a>. 
+</li> 
+ 
+<li> 
+Week 4, Tuesday 27.10.09: Variable Bandwidth Servers (VBS) <a href="VBS1.pdf">slides</a>.
+Thursday, 29.10.09: VBS (continued) <a href="VBS2.pdf">slides</a>.
+Download  all VBS <a href="VBS.odp">slides</a> in open office format (with animations). 
+Papers to read:
+ 
+<ul> 
+<li> 
+Silviu Craciunas, Christoph Kirsch, Hannes Payer, Harald Roeck, and Ana Sokolova,
+Programmable temporal isolation through variable-bandwidth servers.
+In proceedings of SIES'09, pp. 171-180, IEEE, 2009.<br> 
+An extended older version: Real-time scheduling for workload-oriented programming, Technical report TR-2008-02, University of Salzburg, 30pp, 2008.
+</li> 
+ 
+<li> 
+Silviu Craciunas, Christoph Kirsch, Hannes Payer, Harald Roeck, and Ana Sokolova,
+Programmable temporal isolation in real-time and embedded execution environments.
+In proceedings of IIES'09, pp.19-24, ACM, 2009.
+</li> 
+</ul> 
+</li> 
+ 
+<li> 
+Week 5, Tuesday 3.11.09: Workload oriented programming <a href="WOP.pdf">slides</a>.
+Download the workload-oriented programming <a href="WOP.odp">slides</a> in open office format (with animations).
+Paper to read:
+ 
+<ul> 
+<li> 
+Silviu Craciunas, Christoph Kirsch, and Ana Sokolova,
+A workload-oriented programming model for temporal isolation with VBS.
+RePP Workshop'09, ESWeek, 2009.
+</li> 
+</ul> 
+ 
+Thursday, 5.11.09: Real-time memory management (introduction) <a href="RTMM.pdf">slides</a>. 
+</li> 
+ 
+<li> 
+Week 6, Tuesday 10.11.09: Explicit dynamic memory management systems <a href="EDMM.pdf">slides</a>.
+Thursday, 12.11.09: Compact fit (CF) <a href="CF.pdf">slides</a>.
+Paper to read:
+ 
+<ul> 
+<li> 
+Silviu Craciunas, Christoph Kirsch, Hannes Payer, Ana Sokolova, Horst Stadler, and Robert Staudinger,
+A compacting real-time memory management system.
+In proceedings of USENIX 2008, Annual Technical Conference, pp.349-363, 2008. 
+</li> 
+</ul> 
+</li> 
+ 
+<li> 
+Week 7, Tuesday 17.11.09: Concurrent CF <a href="CCF1.pdf">slides</a>.
+Thursday, 19.11.09: Concurrent CF <a href="CCF2.pdf">slides</a>. 
+Paper to read:
+ 
+<ul> 
+<li> 
+Silviu Craciunas, Christoph Kirsch, Hannes Payer, Harald Roeck, and Ana Sokolova,
+Concurrency and scalability versus fragmentation and compaction with Compact-fit.
+Technical report TR-2009-02, University of Salzburg, 28pp, 2009.
+</li> 
+</ul> 
+</li> 
+ 
+<li> 
+Week 8, Tuesday 24.11.09: Concurrent CF <a href="CCF3.pdf">slides</a>.
+Thursday, 26.11.09: Concurrent CF <a href="CCF4.pdf">slides</a>. 
+</li> 
+ 
+<li> 
+Week 9, Tuesday 1.12.09: Giotto <a href="Giotto1.pdf">slides</a>.
+Thursday, 3.12.09: Giotto <a href="Giotto2.pdf">slides</a>. 
+Paper to read:
+ 
+<ul> 
+<li> T.A. Henzinger, B. Horowitz, and C.M. Kirsch: Giotto: A time-triggered language for embedded programming. In Proc. EMSOFT, LNCS 2211, 2001.
+</li> 
+</ul> 
+ 
+</li> 
+ 
+<li> 
+Week 10, Thursday, 10.12.09: E-machine <a href="E-Machine.pdf">slides</a> and HTL <a href="HTL.pdf">slides</a>. 
+Papers to read:
+ 
+<ul> 
+<li> T.A. Henzinger and C.M. Kirsch: The Embedded Machine: Predictable, portable real-time code. In Proc. PLDI, ACM, 2002.
+</li> 
+<li> 
+Thomas A. Henzinger, Christoph M. Kirsch, Eduardo R.B. Marques, and Ana Sokolova: Distributed, Modular HTL. In Proc. RTSS, IEEE, 2009.
+</li> 
+</ul> 
+</li> 
+ 
+<li> 
+Week 11, Tuesday, 15.12.09 and Thursday 17.12.09: Lustre. 
+Papers to read:
+ 
+<ul> 
+<li> Paul Caspi, Daniel Pilaud, Nicolas Halbwachs, John Plaice: Lustre: A Declarative Language for Programming Synchronous Systems. In Proc. POPL, 1987.
+</li> 
+<li> N. Halbwachs, P. Caspi, P. Raymond, D. Pilaud:
+The synchronous data flow programming language LUSTRE. 
+Proceedings of the IEEE, 
+Volume 79, Issue 9, 1991.
+</li> 
+</ul> 
+ 
+</li> 
+
+
+<li> 
+Week 12, Tuesday, 12.01.10 and Thursday 14.01.10: Real-time Communication (CAN and TTA).  
+</li> 
+
+<li> 
+Week 13, Tuesday, 19.01.10 and Thursday 21.01.10: Timed Automata.  
+</li> 
+
+<li> 
+Week 14, Tuesday, 26.01.10: exam test. Thursday 28.01.10: project presentations.  
+</li> 
+
+ 
+</ul> 
+
+
+<hr>
+<b>Exam results and project grading</b>
+<br>
+<TABLE width="70%">
+ <TR>
+  <TD>
+  Student ID
+  </TD>
+  <TD>
+  Exam test points (<= 25)
+  </TD>
+  <TD>
+  Project points 
+  </TD>
+  <TD>
+  Grade 
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****168
+  </TD>
+  <TD>
+  22.5
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****949
+  </TD>
+  <TD>
+  21.5
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****929
+  </TD>
+  <TD>
+  20.5
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****270
+  </TD>
+  <TD>
+  20
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****739
+  </TD>
+  <TD>
+  16.5
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****345
+  </TD>
+  <TD>
+  16
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****858
+  </TD>
+  <TD>
+  15.5
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****161
+  </TD>
+  <TD>
+  14
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+
+<TR>
+  <TD>
+  ****607
+  </TD>
+  <TD>
+  14
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+<TR>
+  <TD>
+  ****105
+  </TD>
+  <TD>
+  14
+  </TD>
+  <TD>
+  </TD>
+  <TD>
+  </TD>
+</TR>
+
+</TABLE>
+
+
+
+ 
+<hr SIZE=1 NOSHADE WIDTH="100%"> 
+ 
+<P> 
+ 
+Grading: 25% exam, 75% project.
+ 
+<P> 
+ 
+Prerequisites: programming experience, basic knowledge of operating
+system and programming language concepts.
+ 
+<P> 
+ 
+Course language: English.
+ 
+<P> 
+ 
+<hr SIZE=1 NOSHADE WIDTH="100%"> 
+ 
+</font> 
+ 
+Administrative contact: Petra . Kirchweger @ cs . uni-salzburg . at
+ 
+</td> 
+</tr> 
+</table> 
+
+<script type="text/javascript"> 
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/s
+cript%3E"));
+</script> 
+<script type="text/javascript"> 
+var pageTracker = _gat._getTracker("UA-3827654-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script> 
+
+</body> 
+</html> 

@@ -1,0 +1,51 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>CKWiki | ESE-Winter-2009 / Vapsbee </title>
+</head>
+<body>
+<h1>Validation of an alternative positioning system in a real-time environment based on IEEE 802.15.4 (Zigbee) beacon</h1>
+<p class='vspace'></p><p>Vapsbee is a Zigbee based real-time positioning system. The setup mainly consists out of beacons planted into an environment and a moving receiver. The receiver calculates the position based on 
+Received Signal Strength Indication (RSSI) and Link Quality Indicator (LQI) values from the IEEE 802.15.4 Stack.
+</p><h2>Team</h2>
+<ul><li>Simon Kranzer 
+</li><li>Michael Lippautz
+</li><li>Thomas Pfeiffenberger
+</li></ul><p class='vspace'></p><h2>Project-Files</h2>
+<ul><li>Presentation 
+<ul><li><a class='urllink' href='Presentation_ESE_VapsBee.pdf' rel='nofollow'>Presentation_ESE_VapsBee.pdf</a>
+</li></ul></li><li>Dokumentation
+<ul><li><a class='urllink' href='Dokumentation_ESE_VapsBee.pdf' rel='nofollow'>Dokumentation_ESE_VapsBee.pdf</a>
+</li></ul></li><li>Sourcecode
+<ul><li>Receiver and Transmitter
+<ul><li><a class='urllink' href='transiver.zip' rel='nofollow'>transiver.zip</a>
+</li></ul></li><li>Parser
+<ul><li><a class='urllink' href='chiroptera.zip' rel='nofollow'>chiroptera.zip</a>
+</li></ul></li></ul></li></ul><p class='vspace'></p><h2>Schema</h2>
+<p><img src='http://student.cosy.sbg.ac.at/~mlippautz/ese/zigbee/Localization_Schema.jpg' style='border:0px;' alt='' />
+</p><p class='vspace'></p>
+<h2>Timing</h2>
+<p><img src='http://student.cosy.sbg.ac.at/~skranzer/timing.jpeg' style='border:0px;' alt='' />
+</p><p class='vspace'></p>
+<h2>RT Environment</h2>
+<p class='vspace'></p><h3>Igep V2</h3>
+<ul><li>Image/Kernel compiled using OpenEmbedded (OE).
+</li><li>Kernel using <em>CONFIG_PREEMPT_RT</em> real-time patch. (<a class='urllink' href='http://rt.wiki.kernel.org' rel='nofollow'>http://rt.wiki.kernel.org</a>)
+</li></ul><p class='vspace'></p><h3>ZigBee Module</h3>
+<ul><li>Programming: MeshC
+</li><li>ZDM-A1281-A2
+</li><li>OpenMAC Stack
+</li></ul><p class='vspace'></p><h3>Main Program</h3>
+<ul><li>Programming: C
+</li><li>Triangulation of "RSSI" value
+</li><li>Output on console/leds (?)
+</li></ul><p class='vspace'></p><h2>Progress</h2>
+<ul><li>Project finished
+</li></ul></div>
+
+      </td>
+    </tr></table>
+</body>
+</html>

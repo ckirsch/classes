@@ -1,0 +1,1509 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>    
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>RCX-Project</title>
+
+  
+
+  
+  
+  
+  
+  <meta name="author" content="Richard Bauer, Christine Grammerst&auml;tter, Christine, Grammerstaetter, Mohamed El Khattaf">
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <meta name="description" content="project for the course &quot;embedded software engineering&quot; 2004/2005">
+</head>
+<body style="background-image: url(paper.gif); background-color: rgb(200, 200, 200); color: rgb(0, 0, 0);" alink="#000000" link="#000000" vlink="#551a8b">
+
+<bodynew text="#000000" bgcolor="#FFFBF0" link="#000000" vlink="#551A8B" alink="#000000" background="paper.gif" style="color: rgb(0, 0, 0); background-color: rgb(255, 0, 255); background-image: url(paper.gif);">
+
+
+  
+</bodynew>
+<ul type="square">
+
+
+
+
+
+
+
+
+  <li> <b><font size="+1">Team</font></b></li>
+  <font size="+1">Christine Grammerst&auml;tter, Mohamed El Khattaf, Richard Bauer<br>
+</font>
+</ul>
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+  <li><b><font size="+1">Professor<br>
+</font></b><font size="+1"><a href="http://www.cs.uni-salzburg.at/%7Eck/">Christoph Kirsch</a>, Head of the Computational Systems Group</font><b><font size="+1"><br>
+    </font></b></li>
+</ul>
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+  <li><b><font size="+1">Project - description</font></b></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<table style="width: 781px; height: 376px;" border="0" cellpadding="0" cellspacing="0">
+
+
+
+
+
+
+
+
+
+
+  <tbody>
+    <tr>
+      <td valign="top" width="40"><br>
+      </td>
+      <td width="200"><font size="+1">Programming an E-machine for the Lego-RCX-Brick.</font>
+      <p><font size="+1">Demonstrating the execution of a control-application written in E-code on the E-machine on our RCX-robot..</font></p>
+      <br>
+      </td>
+      <td valign="top"><img src="rcx.gif" alt="" height="367" width="284"> <br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <li> <b><font size="+1">The Robot</font></b></li>
+  <font size="+1">The
+Robot is a vehicle, with two electric driven wheels by electric motors
+on the back side, and one passive wheel on the front side. In order to
+avoid hitting any obstacle there exist two sensors, one for left side
+and one for the right side.</font><big> <br>
+  </big> &nbsp; <li> <b><font size="+1">Purpose of the E Machine</font></b></li>
+  <font size="+1">The
+E Machine paradigm is used to ensure time-safe, environment-determined
+and therefore predictable behaviour of the implementation.</font>
+</ul>
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+  <li> <b><font size="+1">Implementation-details of our E Machine</font></b><br>
+  </li>
+  <font size="+1">We implemented 7 E-Code instructions and 3 optional for better maintainance of the E Code:<br>
+<br>
+</font>
+<table style="background-color: black; width: 920px; text-align: left;" border="1" cellpadding="2" cellspacing="0">
+    <tbody><tr>
+
+
+      <td font-weight="" bold="" style="width: 205px; vertical-align: top; background-color: rgb(255, 204, 0); text-align: left;">
+        <big><span style="font-weight: bold;">&nbsp;E-Code-Instruction</span><br>
+      </big></td>
+      <td style="vertical-align: top; font-weight: bold; background-color: rgb(51, 204, 0); width: 330px;"><big>&nbsp;3 optional E-Code-Instruction<br>
+      </big></td>
+      <td style="vertical-align: top; font-weight: bold; background-color: rgb(192, 192, 192); width: 450px;"><big>&nbsp;purpose</big></td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; background-color: rgb(255, 204, 0); width: 205px;"><font size="+1">&nbsp;E_CALL</font></td>
+      <td style="vertical-align: middle; background-color: rgb(51, 204, 0); width: 330px;"><font size="+1"><br>
+      </font></td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); width: 450px;">&nbsp;performs driver-calls to I/O-drivers, Task-drivers,<br>
+&nbsp;mode-checkers, exeption-handling-drivers<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; background-color: rgb(255, 204, 0); width: 205px;"><font size="+1">&nbsp;E_JUMP<br>
+</font></td>
+      <td style="vertical-align: middle; background-color: rgb(51, 204, 0); width: 330px;"><font size="+1">&nbsp;E_JUMP_REL</font></td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); width: 450px;">&nbsp;jumps to an other address in e code<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; background-color: rgb(255, 204, 0); width: 205px;"><font size="+1">&nbsp;E_FUTURE</font></td>
+      <td style="vertical-align: middle; background-color: rgb(51, 204, 0); width: 330px;"><font size="+1">&nbsp;E_FUTURE_REL</font></td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); width: 450px;">&nbsp;enters new time-trigger into trigger-queue<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; background-color: rgb(255, 204, 0); width: 205px;"><font size="+1">&nbsp;E_RELEASE</font></td>
+      <td style="vertical-align: middle; background-color: rgb(51, 204, 0); width: 330px;"><br>
+      </td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); width: 450px;">&nbsp;releases task to the operating system<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; background-color: rgb(255, 204, 0); width: 205px;"><font size="+1">&nbsp;E_RETURN</font></td>
+      <td style="vertical-align: middle; background-color: rgb(51, 204, 0); width: 330px;"><br>
+      </td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); width: 450px;">&nbsp;marks end of an eblock, emachine lets released<br>
+&nbsp;tasks to run<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; background-color: rgb(255, 204, 0); width: 205px;"><font size="+1">&nbsp;E_CANCEL</font></td>
+      <td style="vertical-align: middle; background-color: rgb(51, 204, 0); width: 330px;"><br>
+      </td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); width: 450px;">&nbsp;used for error handling: killing of tasks<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; background-color: rgb(255, 204, 0); width: 205px;"><font size="+1">&nbsp;E_IF</font></td>
+      <td style="vertical-align: middle; background-color: rgb(51, 204, 0); width: 330px;"><font size="+1">&nbsp;E_IF_REL</font></td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); width: 450px;">&nbsp;tests a boolean condition function and performs<br>
+&nbsp;jump to this function returns true
+      </td>
+      
+    </tr>
+</tbody></table>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+
+
+  <font size="+1">The purpose of the optional instructions are, to allow relative change of the E program-counter.<br>
+The connection between logical references in the e-code and physical-addresses is established with an array of pointer <a href="#WRAPPER">wrapper</a></font><big>.
+ This array is used for all instructions except E_RETURN and E_JUMP(REL).<br>The
+E_RELEASE instruction releases tasks to the operating-system by the
+with the execi-function. These released tasks should usually have a
+lower priority than the emachine, but we discovered, that
+time-constraints are met better by not doing so.<br>
+After each execution of an e-block for all enabled trigger, the
+e-machine computes the next point in time for the earliest trigger by <a href="#SET_MSLEEP">searching</a> for it in the <a href="#TRIGGER_STRUCTURE">trigger queue</a>.<br>
+  </big>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <font size="+1">important drivers: Driver_sensor_input( ), Driver_motor_output( ), Driver_oh2mc(), Driver_dc2mc()</font> <br>
+  <font size="+1">important tasks: Task_obstacle_handling( ), Task_motor_control( ), Task_direction_change( )<br>
+  </font>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <li><big><b>The model</b><br>
+    Two modi ware implemented: <a href="#STANDBY_MODE">standby-mode</a> and <a href="#RUNNING_MODE">running-mode</a>.<br>
+  Each mode has a separate initializing-driver which is called only once by entering in each mode.<br>
+Switching from standby-mode to running-mode has a special feature, one
+E_FUTURE-instruction is used to implement a special delay-unit, to give
+the hardware enough settle-time (1000ms) to be initialized.(e.g.
+assumption some big condensors of the enabled hardware have to be
+loaded).<br>
+  But switching back to standby-mode is not delayed!<br><br>
+
+</big></li><li><span style="font-weight: bold;"><big>Exception handling</big></span><big><br>
+In both modi, the show_standby_mode- and show_running_task make after 5
+seconds of running-time a big delay. That means, they do not meet their
+deadlines of 250msec. This deadlines are detected during the emachine
+tries to release that task again.<br>
+  The E Machine cancels those "evil" tasks and calls specific "clean-up" functions before it reenters each mode.<br>
+For demonstrating purpose, in running mode this function first cause
+the vehicle to brake, and then a delay of 3.5 seconds in order to make
+you see, that an exeption happened.<br>
+  In standby-mode this function reinitializes this mode, you will hear again a mode-switch melody.<br>You
+will also discover, that the vehicle will somtimes stand for very small
+amount of time (50ms..200ms). This is all right, because after the
+duration of the actual command has expired, the task direction-change
+will be executed in the worst timing-case after 200 ms. It's periodic
+invokation time is 250 msec.<br>
+  <br>
+  </big></li>
+
+<big>  <li><b>The Giotto-Model without the delay unit</b></li></big><b> </b>
+    <pre><b><font color="#3333ff">mode </font>standby_mode <font color="#ff0000">( )</font></b><b> period 250 <font color="#ff0000">{    </font></b><br>    <font color="#3333ff">exitfreq </font>1 <font color="#3333ff">when </font>Condition_running <font color="#3333ff">do </font>running_mode<font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>    <font color="#3333ff">taskfreq </font>1 <font color="#3333ff">do </font>show_standby_mode<font color="#ff0000">( </font><font color="#ff0000">)</font>;<br><b><font color="#ff0000">}</font></b><br><br><b><font color="#3333ff">mode </font>running_mode <font color="#ff0000">( )</font> period 250 <font color="#ff0000">{</font></b><br>    <font color="#3333ff">actfreq  </font>1 <font color="#3333ff">do </font>driver_actuator<font color="#ff0000">(</font><font color="#ff0000"> )</font>;<br>    <font color="#3333ff">exitfreq </font>1 <font color="#3333ff">when </font>Condition_standby <font color="#3333ff">do </font>standby_mode;<br>    <font color="#3333ff">taskfreq </font>5 <font color="#3333ff">do </font>motor_control<font color="#ff0000">(</font>driver_OH2MC, driver_DC2MC<font color="#ff0000">)</font>;<br>    <font color="#3333ff">taskfreq </font>5 <font color="#3333ff">do </font>obstacle_handling<font color="#ff0000">(</font>driver_sensor<font color="#ff0000">)</font>; <br>    <font color="#3333ff">taskfreq </font>1 <font color="#3333ff">do </font>dir_change<font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>    <font color="#3333ff">taskfreq </font>1 <font color="#3333ff">do </font>show_running_mode<font color="#ff0000">(</font> <font color="#ff0000">)</font>; <br><b><font color="#ff0000">}</font></b>   <br></pre> 
+</ul>
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+  <li><b><font size="+1"><big>The Timing-Model</big></font></b><b><font size="+1"><br>
+    </font></b>
+    <table style="width: 760px;" border="0" cellpadding="2" cellspacing="0"><caption><br>
+      </caption>
+      <tbody>
+        <tr>
+          <td valign="top"><br>
+          </td>
+          <td style="vertical-align: top; background-color: rgb(255, 204, 0); text-align: center;"><br>
+          </td>
+          <td style="white-space: nowrap; text-align: center;" valign="bottom">condition-test<br>
+          </td>
+          <td style="white-space: nowrap;" align="center" bgcolor="#ff99ff" valign="top"><b>delay-unit</b><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td align="center" bgcolor="#33cc00" valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><br>
+          </td>
+          <td style="white-space: nowrap;" align="center" bgcolor="#ffcc00" valign="top"><big><big><b>Standby - Mode</b></big></big><br>
+          </td>
+          <td style="white-space: nowrap; vertical-align: middle;" align="center">&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#9654;</td>
+          <td style="white-space: nowrap; vertical-align: middle;" align="center" bgcolor="#ff99ff">1000 ms<br>
+          </td>
+          <td style="white-space: nowrap; vertical-align: middle;" align="center">&#8211;&#8211;&#8211;&#8211;&#9654;
+          </td>
+          <td style="white-space: nowrap;" align="center" bgcolor="#33cc00" valign="top"><big><big><b>Running
+- Mode</b></big></big><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><br>
+          </td>
+          <td align="center" bgcolor="#ffcc00" valign="top"><br>
+          </td>
+          <td rowspan="1" colspan="3" align="center" valign="top"><br>
+          </td>
+          <td align="center" bgcolor="#33cc00" valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><br>
+          </td>
+          <td bgcolor="#ffcc00" valign="top"><br>
+          </td>
+          <td rowspan="1" colspan="3" style="vertical-align: bottom; white-space: nowrap; text-align: center;">condition-test: no delay<br>
+          </td>
+          <td bgcolor="#33cc00" valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top"><br>
+          </td>
+          <td style="white-space: nowrap; vertical-align: middle;" bgcolor="#ffcc00">
+          <div style="text-align: center;">&#9664;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;<big><b>250 ms</b></big>&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#9654;</div>
+
+          </td>
+          <td style="white-space: nowrap; vertical-align: middle;" rowspan="1" colspan="3" align="center">&#9668;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;</td>
+          <td style="white-space: nowrap; vertical-align: middle;" bgcolor="#33cc00">
+          <div style="text-align: center;">&#9664;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;<big><b>250 ms</b></big>&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#9654;</div>
+
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<big><big><b>
+<br>
+</b></big></big>
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <li><big><big><b>The Timing-Model (detailed)</b></big></big></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<table style="width: 1000px; height: 630px;" border="0" cellpadding="1" cellspacing="0">
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="width: 195px; background-color: rgb(255, 204, 0); height: 1px; text-align: center; vertical-align: middle;"><br>
+      </td>
+      <td style="height: 1px; text-align: center; vertical-align: middle;"><br>
+      </td>
+      <td style="height: 1px; text-align: center; vertical-align: middle;"><br>
+      </td>
+      <td style="height: 1px; text-align: center; vertical-align: middle;"><br>
+      </td>
+      <td style="height: 1px; text-align: center; vertical-align: middle;"><br>
+      </td>
+      <td colspan="9" rowspan="1" style="background-color: rgb(51, 204, 0); height: 1px; text-align: center; vertical-align: middle;"><br>
+      </td>
+    </tr>
+<tr>
+      <td valign="top"><br>
+      </td>
+      <td style="vertical-align: top; background-color: rgb(255, 204, 0); text-align: center; width: 195px;"><big><big><b>Standby-Mode</b></big></big></td>
+
+      <td style="width: 5px; vertical-align: top;"><br>
+
+      </td>
+
+      <td style="vertical-align: top;"><br>
+
+      </td>
+
+      <td style="vertical-align: top;"><br>
+
+      </td>
+
+      <td style="width: 5px; vertical-align: top;"><br>
+
+      </td>
+
+      <td rowspan="1" colspan="9" style="vertical-align: top; background-color: rgb(51, 204, 0); text-align: center;"><big><big><b>Running-Mode</b></big></big><br>
+
+      </td>
+
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+
+      <td style="width: 195px; vertical-align: middle;" align="center" bgcolor="#cc9933">
+                   <b>Block 1<br>
+      </b></td>
+      <td style="vertical-align: middle;" width="5"><br>
+      </td>
+      <td colspan="2" rowspan="1" style="vertical-align: middle; text-align: center;"><br>
+
+      </td>
+      
+      <td style="vertical-align: middle;" width="5"><br>
+      </td>
+
+
+
+      <td style="vertical-align: middle;" align="center" bgcolor="#009900">
+                   <b>Block 1<br>
+      </b></td>
+
+
+      <td style="vertical-align: middle;" bgcolor="#009900"><b><br>
+      </b></td>
+      <td style="vertical-align: middle;" align="center" bgcolor="#009900"><b>Block 2<br>
+      </b></td>
+      <td style="vertical-align: middle;" bgcolor="#009900"><b><br>
+      </b></td>
+      <td style="vertical-align: middle;" align="center" bgcolor="#009900" width="65"><b>Block
+3<br>
+      </b></td>
+      <td style="vertical-align: middle;" bgcolor="#009900"><b><br>
+      </b></td>
+      <td style="vertical-align: middle;" align="center" bgcolor="#009900" width="65"><b>Block
+4<br>
+      </b></td>
+      <td style="vertical-align: middle;" bgcolor="#009900"><b><br>
+      </b></td>
+      <td style="vertical-align: middle;" align="center" bgcolor="#009900" width="65"><b>Block
+5<br>
+      </b></td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top">&nbsp; 1.driver-sensor<br>
+      </td>
+      <td rowspan="1" colspan="4" align="center" valign="middle">&#9668;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;</td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 1.condition-test for<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp;<b> I/O-drivers</b><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top">&nbsp; 2.mode-switch-check<br>
+      </td>
+      <td style="text-align: right;" colspan="4" rowspan="1" valign="top" width="5">condition test&nbsp;
+      </td>
+      
+      
+      
+      <td bgcolor="#33cc00" valign="top">&nbsp; mode switch<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 1.driver motor<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 2.driver sensor<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><b>&nbsp; I/O-drivers</b><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td style="text-align: center;" colspan="2" rowspan="1" valign="top"><br>
+
+      </td>
+      
+      <td valign="top" width="5"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 2.driver motor<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; <b>task-drivers</b><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="middle" width="5"><br>
+      </td>
+      <td style="width: 90px; white-space: nowrap;" colspan="2" rowspan="1" align="center" bgcolor="#ff99ff" valign="top">delay</td>
+      <td valign="middle" width="5"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp;&nbsp;3.driver sensor<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 3.driver oh2mc<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td align="center" nowrap="nowrap" valign="middle" width="5">&#8211;&#9658;
+      </td>
+      <td style="width: 90px; white-space: nowrap;" rowspan="1" colspan="2" align="center" bgcolor="#ff99ff" valign="top">unit<br>
+      </td>
+      <td align="center" nowrap="nowrap" valign="middle" width="5">&#8211;&#9658;
+      </td>
+      <td bgcolor="#33cc00" valign="top"><b>&nbsp; task-drivers</b><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td rowspan="1" colspan="2" style="vertical-align: top; background-color: rgb(255, 153, 255); text-align: center; width: 90px; white-space: nowrap;">1000 ms<br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 4.driver oh2mc<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td colspan="4" rowspan="1" valign="top" width="5">condition-test
+      </td>
+      
+      
+      
+      <td bgcolor="#33cc00" valign="top">&nbsp; 5.driver dc2mc<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; like<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp;&nbsp;like<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp;&nbsp;like<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" align="center" bgcolor="#ffcc00" valign="top"><b># TASKS: 1</b><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td align="center" bgcolor="#33cc00" valign="top"><b># TASKS: 4</b><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#33cc00" valign="top"><b># TASKS: 2..4</b><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; block 2<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp;&nbsp;block 3<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp;&nbsp;block 4<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="text-align: justify; width: 195px;" bgcolor="#ffcc00" valign="top">&#9668;&#8211;3.show standby
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td rowspan="1" colspan="9" align="left" bgcolor="#33cc00" valign="middle" width="180">&#9668;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212; 6. show_running-mode&#8212;(250 ms max)&#8212;&#8212;&#8212;&nbsp;&#8211;&#8211; &#8211;&#9658;</td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px; text-align: right;" bgcolor="#ffcc00" valign="top">&nbsp; -mode&#8211;&#9658;
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td rowspan="1" colspan="9" align="left" bgcolor="#33cc00" valign="top" width="180">&#9668;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212; 7. direction_changee&#8212;(250 ms max)&#8212;&#8212;&#8212;&nbsp;&#8211; &#8211; &#8211;&#9658;
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td align="center" bgcolor="#33cc00" valign="top">&#9668;&#8211;8.motor-control&#8211;&#9658;</td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#33cc00" valign="top">&#9668;&#8211;&#8211;4.motor-control&#8211;&#8211;&#9658;
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" align="right" bgcolor="#ffcc00" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td align="center" bgcolor="#33cc00" valign="top">&#9668;9.obstacle-handling&#9658;</td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#33cc00" valign="top">&#9668;5.obstacle-handling&#9658;</td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" align="left" bgcolor="#ffcc00" valign="top"> &nbsp; 4.set future to begin-<br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 10.set future to<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top">&nbsp; 6.set future to<br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td bgcolor="#33cc00" valign="top"><br>
+      </td>
+      <td bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="vertical-align: top; white-space: nowrap; background-color: rgb(51, 204, 0);">&nbsp;6.set future<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px; text-decoration: underline;" bgcolor="#ffcc00" valign="top">&nbsp; ning of this block&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;  <br>
+      </td>
+      <td colspan="4" rowspan="1" style="text-decoration: underline; text-align: center;" valign="top" width="5">
+      <br>
+</td>
+            
+      
+      <td style="text-decoration: underline; text-align: left;" bgcolor="#33cc00" valign="top">&nbsp; next block 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <br>
+</td>
+      <td style="text-decoration: underline;" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="text-decoration: underline; text-align: left;" bgcolor="#33cc00" valign="top">&nbsp; next block 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      </td>
+      <td style="text-decoration: underline;" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="text-decoration: underline; text-align: center;" bgcolor="#33cc00" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;  <br>
+      </td>
+      <td style="text-decoration: underline;" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="text-decoration: underline; text-align: center;" bgcolor="#33cc00" valign="top">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;  <br>
+      </td>
+      <td style="text-decoration: underline;" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="vertical-align: top; white-space: nowrap; background-color: rgb(51, 204, 0); text-decoration: underline;">&nbsp;to block 2&nbsp;  <br>
+</td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="vertical-align: top; white-space: nowrap; background-color: rgb(255, 204, 0); text-align: center; width: 195px;">&#9664;&#8212;&#8212;&#8211;&#8211;250 ms&#8211;&#8212;&#8211;&#8212;&#9654;
+      </td>
+      <td rowspan="1" colspan="4" align="center" valign="top"><b>timeline</b></td>
+      <td style="vertical-align: top; white-space: nowrap; background-color: rgb(51, 204, 0); text-align: center;"><br>
+</td>
+      <td align="center" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#33cc00" valign="top">&#9664;&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;50 ms&#8211;&#8211;&#8211;&#8211;&#8211;&#8211;&#9654;
+      </td>
+      <td align="center" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="vertical-align: top; white-space: nowrap; background-color: rgb(51, 204, 0); text-align: center;">&#9664;&#8211;50 ms&#8211;&#9654;
+      </td>
+      <td align="center" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="vertical-align: top; white-space: nowrap; background-color: rgb(51, 204, 0); text-align: center;">&#9664;&#8211;50 ms&#8211;&#9654;</td>
+      <td align="center" bgcolor="#009900" valign="top"><br>
+      </td>
+      <td style="vertical-align: top; white-space: nowrap; background-color: rgb(51, 204, 0); text-align: center;">&#9664;&#8211;50 ms&#8211;&#9654;
+
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td style="width: 195px;" align="right" valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top" width="5"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <li><b><font size="+1">Description of the two implemented modes</font></b><br>
+  </li>
+  <font size="+1">The <a href="#ECODE">E code</a> is executed by our <a href="#SOURCE-EMACHINE">E machine-implementation</a>.
+  We implemented two modes. A standby-mode and a running-mode.</font>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote>
+  <ul type="circle">
+    <li> <font size="+1"><a name="STANDBY_MODE"></a>The
+standby-mode's purpose is to wait for an activation-command in order
+to switch into the running-mode. This check is performed by the boolean
+condition-function <a href="#C_RUNNING">Condition_running</a>. If no
+activation-command arrived, a continous number is displayed
+by the task <a href="#T_STANDBY">show_standby_mode</a>.<br>
+This mode has a hyper-period of 250 ms.<br>
+Mode-Switching to standby-mode can be performed either by pressing the
+"Prgm"-Button on the RCX-Robot, or on the "Prgm"-Button on the <a href="#SOURCE-REMOTE">remote-control</a>.<br>
+      </font></li>
+  </ul>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote>
+  <ul type="circle">
+    <font size="+1"><a name="RUNNING_MODE"></a>The
+running-mode's purpose is to control the vehicle. After switching
+into this mode and mode-initialisation and check for switching back
+to standby-mode by the boolean function <a href="#C_STANDBY">Condition_standby</a>,
+this mode periodically checks all 50 msec whether an obstacle was hit
+or not. If hit, the vehicle chooses a new direction to get free. The
+robot, if not hit, selects new direction and speed all 250msec.<br>
+This mode has a hyper-period of 250msec<br>
+      </font><font size="+1">Mode-Switching to running-mode can be
+performed either by pressing the "View"-Button on the RCX-Robot, or on
+the "View"-Button on the <a href="#SOURCE-REMOTE">remote-control.</a>&nbsp;<br>
+    </font>
+  </ul><br>
+  <big>For further details, please take a look at our <a href="#ECODE">e-code!</a><br>
+  </big></blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+
+
+  <li> <b><font size="+1">The tasks</font></b></li>
+  <ul>
+    <li><font size="+1"><a href="#T_OBSTACLE">Task_obstacle_handling</a></font><br>
+      <font size="+1">Periodically checking all 50msec, whether the
+vehicle hit an obstacle or not.<br>
+      <br>
+      </font></li>
+    <li><font size="+1"><a href="#T_DIRECTION">Task_direction_change</a><br>
+Changing the actual direction of the vehicle by random
+all 250 msec.<br>
+      <br>
+      </font></li>
+    <li><font size="+1"><a href="#T_MOTOR">Task_Motor-Control</a><br>
+Both task of above communicate with this one by the help of two
+communication_drivers (<a href="#D_OH2MC">driver_oh2mc</a> and <a href="#D_DC2MC">driver_dc2mc</a>).<br>
+      </font><font size="+1">Motor-control decides with the help of a
+priority mechanism (commands from obstacle_handling are higher
+prioritized than those from direction_change) which command to select,
+if commands have changed.</font> <font size="+1"><br>
+Motor-control also controls the duration of a motor-command, that
+means, if task direction_change changed the direction, it will take no
+effect, till the actual duration of the previos command has expired.
+In Opposite to that, a new command from task obstacle handling always
+cancels a command of direction-change, even if the command has not
+expired.</font> <br>
+      <br>
+    </li>
+    <li><big><a href="#T_RUNNING">Task_Show_running_mode</a><br>Displays
+a blinking "-" in order to see, that the emachine is in
+running_mode. After 5 seconds running-time this task generates an
+exception, in order to demonstrate, that the emachine kills this task
+and reenters that mode without initialization.<br>
+      </big><br>
+    </li>
+    <li><a href="#T_STANDBY"><big>Task_Show_standby_mode</big></a><br>
+      <big>Displays
+spent time in standby_mode. Indicating, the Robot
+is ready to switch into running-mode. After 5 seconds running/time this
+task generates an exception, in order to demonstrate, that the emachine
+kills this task and reenters that mode with initialization.</big><br>
+    </li>
+  </ul>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <font size="+1">The E code interpreted by the
+E-Machine ensures time-safety and predictability. Communication is
+performed at specific points in time.</font>&nbsp;
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <li><b><font size="+1">Programming Language</font></b></li>
+  <font size="+1">C</font> <br>
+  <br>
+  <li><big><b>binary files</b><br>
+    <a href="emachine.lx">emachine.lx</a></big> &nbsp;<a href="sender.lx"><big>sender.lx</big></a><br>
+    <br>
+  </li>
+  <li><b><font size="+1">Operating-System</font></b> </li>
+  <font size="+1">Brick-OS: <a href="http://brickos.sourceforge.net/">brickos-0.2.6.10.6</a></font><br>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<hr size="2" width="100%">
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<big><b><font color="#009900"><a name="SOURCE-EMACHINE"></a></font></b></big>
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul type="square">
+
+    
+    <pre><big><b><font color="#009900">// This is our implementation of our RCX-project<br>// by</font><br></b></big><big><b><font color="#cc66cc">//</font></b></big><big><b> <font color="#cc66cc">Christine Grammerst&auml;</font></b></big><big><b><font color="#cc66cc">tter<br></font></b></big><big><b><font color="#cc66cc">//</font></b></big><big><b><font color="#cc66cc"><font color="#009900"> </font></font><font color="#cc66cc">Mohamed El Khattaf<br></font></b></big><big><b><font color="#cc66cc">//</font></b></big><big><b><font color="#cc66cc"><font color="#009900"> </font></font></b><b><font color="#cc66cc">Richard Bauer</font></b></big><br><br><font color="#3333ff">#include </font>&lt;conio.h&gt;<br><font color="#3333ff">#include </font>&lt;dsound.h&gt;<br><font color="#3333ff">#include </font>&lt;dsensor.h&gt;<br><font color="#3333ff">#include </font>&lt;stdlib.h&gt;<br><font color="#3333ff">#include </font>&lt;time.h&gt;<br><font color="#3333ff">#include </font>&lt;dmotor.h&gt;<br><font color="#3333ff">#include </font>&lt;lnp.h&gt;<br><font color="#3333ff">#include </font>&lt;dkey.h&gt;<br><font color="#3333ff">#include </font>&lt;tm.h&gt;<br><br><big><b><font color="#009900">/////////////////<br>// Definitions //<br>/////////////////</font><br></b></big><font color="#3333ff">#define</font> <font color="#3333ff"><font color="#cc33cc">boolean </font></font><font color="#3333ff">unsigned </font>char<br><font color="#3333ff">#define</font> TRUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  1<br><font color="#3333ff">#define</font> FALSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<br><font color="#3333ff">#define</font> FREE_TASK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<br><br><b><font color="#009900">// Errors</font></b><br><font color="#3333ff">#define</font> ERR_CALL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -1&nbsp; <font color="#009900">// task is still running, release of task not possible</font><br><font color="#3333ff">#define</font> ERR_RELEASE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -2&nbsp; <font color="#009900">// task is still running, release of task not possible</font><br><font color="#3333ff">#define</font> ERR_FUTURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -3&nbsp; <font color="#009900">// no free entry in trigger_queue found</font><br><font color="#3333ff">#define</font> ERR_FUTURE_REL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -4  <font color="#009900">// no free entry in trigger_queue found</font><br><font color="#3333ff">#define</font> ERR_IF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -5&nbsp; <font color="#009900">// e_PC out of bounds</font><br><font color="#3333ff">#define</font> ERR_IF_REL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -6&nbsp; <font color="#009900">// e_PC out of bounds</font><br><font color="#3333ff">#define</font> ERR_JUMP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -7&nbsp; <font color="#009900">// e_PC out of bounds</font><br><font color="#3333ff">#define</font> ERR_JUMP_REL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -8&nbsp; <font color="#009900">// e_PC out of bounds</font><br><font color="#3333ff">#define</font> ERR_ILLEGAL_OPCODE&nbsp;&nbsp;  -9&nbsp; <font color="#009900">// the emachine detected an illegal opcode</font><br><font color="#3333ff">#define</font> ERR_WRAPPER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -10&nbsp; <font color="#009900">// illegal or undefined address in wrapper-array</font><br><font color="#3333ff">#define</font> ERR_MSLEEP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -11&nbsp; <font color="#009900">// no valid (time)-trigger found for emachine to wake up</font><br><font color="#3333ff">#define</font> ERR_WRONG_DIRECTION  -12&nbsp; <font color="#009900">// should not occur!</font><br><font color="#3333ff">#define</font> ERR_INVOKE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -13&nbsp; <font color="#009900">// an error was detected during execution of invoke</font><br><font color="#3333ff">#define</font> ERR_PC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  -14&nbsp; <font color="#009900">// should not occur!</font><br><br><b><font color="#009900">// define the E-Code instructions</font></b><br><font color="#3333ff">#define </font><a href="#E_RETURN">E_RETURN</a>               0  <font color="#009900">// end of e-block</font><br><font color="#3333ff">#define </font><a href="#E_CALL">E_CALL</a>                 1  <font color="#009900">// driver-call</font><br><font color="#3333ff">#define </font><a href="#E_RELEASE">E_RELEASE</a>              2  <font color="#009900">// release task to task-queue of the OS</font><br><font color="#3333ff">#define </font><a href="#E_FUTURE">E_FUTURE</a>               3  <font color="#009900">// future wake-up for the emachine</font><br><font color="#3333ff">#define </font><a href="#E_FUTURE">E_FUTURE_REL</a>           4  <font color="#009900">// future wake-up for the emachine</font><br><font color="#3333ff">#define </font><a href="#E_IF">E_IF</a>                   5  <font color="#009900">// testing of a boolean-function and performing a jump according the this function<br></font><font color="#3333ff">#define </font><a href="#E_JUMP">E_JUMP</a>                 6  <font color="#009900">// absolute jmp to an address</font><br><font color="#3333ff">#define </font><a href="#E_IF_REL">E_IF_REL</a>               7  <font color="#009900">// relative-if easier to maintain</font><br><font color="#3333ff">#define </font><a href="#E_JUMP_REL">E_JUMP_REL</a>             8  <font color="#009900">// relative-jmp</font><br><font color="#3333ff">#define </font><a href="#E_CANCEL">E_CANCEL</a>               9  <font color="#009900">// cancels a running task</font><br><br><font color="#009900">// note: the following constants are also used as an index into wrapper[] to get an connection to real phyical addresses<br><b>// define tasks</b></font><br><font color="#3333ff">#define </font>motor_control          2  <font color="#009900">// determines correct values for the motor-actuators</font><br><font color="#3333ff">#define </font>show_standby_mode      3  <font color="#009900">// user-task that shows the user, we are in standby-mode</font><br><font color="#3333ff">#define </font>show_running_mode      4  <font color="#009900">// user-task that shows the user, we are in running-mode</font><br><font color="#3333ff">#define </font>obstacle_handling      5  <font color="#009900">// findig out, if we hit an obstacle, and which way to correct the direction</font><br><font color="#3333ff">#define </font>dir_change             6  <font color="#009900">// randomly choosen new direction</font><br><br><font color="#009900">// define condition-functions (for if-instruction)<br></font><font color="#3333ff">#define </font>mode_switch_1          7  <font color="#009900">// if we receive command "1" or "view"-button is pressed -&gt; change to "running" mode<br></font><font color="#3333ff">#define </font>mode_switch_2          8  <font color="#009900">// if we receive command "0" or "prgm"-button is pressed -&gt; change to "standby" mode<br></font><br><font color="#009900">// define drivers</font><br><font color="#3333ff">#define </font>driver_actuator        9  <font color="#009900">// writing to the hardware (in this case its a system-call to BrickOS)</font><br><font color="#3333ff">#define </font>driver_sensor         10  <font color="#009900">// reading sensors (touch-Sensors and Communication occurance) to input-ports</font><br><font color="#3333ff">#define </font>driver_OH2MC          11  <font color="#009900">// communication-driver between Obstacle-Handling and Motor-Control</font><br><font color="#3333ff">#define </font>driver_DC2MC          12  <font color="#009900">// communicaiton-driver between Direction-Change and Motor-Control</font><br><font color="#3333ff">#define</font> driver_m_standby_init 13  <font color="#009900">// if we first enter mode1("standby") we call this driver</font><br><font color="#3333ff">#define </font>driver_m_running_init 14  <font color="#009900">// if we first enter mode2("running") we call this driver</font><br><font color="#3333ff"><br>#define</font> clean_up_oh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15<br><font color="#3333ff">#define</font> clean_up_dc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16<br><font color="#3333ff">#define</font> clean_up_mc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 17<br><font color="#3333ff">#define</font> clean_up_sstandbym&nbsp;&nbsp;&nbsp; 18<br><font color="#3333ff">#define</font> clean_up_srunningm&nbsp;&nbsp;&nbsp; 19<br><font color="#3333ff">#define </font>WRAPPER_MAX           19  <font color="#009900">// maximum-value into wrapper-array</font><br><br><font color="#3333ff">#define </font>time_trigger           1  <font color="#009900">// trigger-check-function for time-triggers<br></font><font color="#3333ff">#define </font>time_eps               2  <font color="#009900">// time inaccuracy for the msleep in ms, because otherwise the emachine will wake up too late!</font><br><font color="#009900">                                  // if you decrease one of the following two constants note to keep time_eps lower than these constants, otherwise tasks won't be executed!</font><br><font color="#3333ff">#define </font>Period_running        50  <font color="#009900">// you can change these two constants to see how the emachine works (&gt;=15?)</font><br><font color="#3333ff">#define </font>Period_standby       250<font color="#009900">  // (&gt;=20)</font><br><br><font color="#009900"><b>// E Command</b><br></font><font color="#3333ff">struct</font><font color="#3333ff"> </font><font color="#cc33cc">eCommand</font><font color="#ff0000">{</font><br>    <font color="#3333ff">unsigned </font><font color="#3333ff">int </font>command;         <font color="#009900">// kind of instruction</font><br>   <font color="#3333ff"> </font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font> method;          <font color="#009900">// used by CALL, FUTURE, IF, RELEASE-Intruction</font><br>    <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> time;            <font color="#009900">// used by FUTURE</font><br>    <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> e_address;       <font color="#009900">// used by FURURE, JMP and IF-Instructions</font><br><font color="#ff0000">}</font>;<br><br><b><font color="#009900">// E Code pointers absolute</font></b><br><font color="#3333ff">#define</font> a_1&nbsp;              0<br><font color="#3333ff">#define</font> a_2&nbsp;              1<br><font color="#3333ff">#define</font> a_3&nbsp;              6<br><font color="#3333ff">#define</font> running_mode    a_3<br><font color="#3333ff">#define</font> a_4&nbsp;              9<br><font color="#3333ff">#define</font> running_no_init a_4<br><font color="#3333ff">#define</font> a_5              20<br><font color="#3333ff">#define</font> a_6              27<br><br><font color="#3333ff">#define</font> a_c_motor        60<br><font color="#3333ff">#define</font> a_c_oh&nbsp;&nbsp;&nbsp;        57<br><font color="#3333ff">#define</font> a_c_dc&nbsp;&nbsp;&nbsp;        54<br><font color="#3333ff">#define</font> a_c_srm&nbsp;&nbsp;        51<br><font color="#3333ff">#define</font> a_c_ssm&nbsp;&nbsp;        48 &nbsp;&nbsp;&nbsp; &nbsp;<font color="#009900"> // address of E-Code, if task exceeds time-constaint</font><br><br><font color="#009900">// E Code pointers relative</font><br><font color="#3333ff">#define</font> r_a3&nbsp;             4<br><font color="#009900"><br><a name="GIOTTO_MODEL"></a></font><font color="#009900"><a name="ECODE"><b><big><br>////////////<br>// E Code //<br>////////////</big></b></a></font><b><big><br></big></b><font color="#3333ff">static const </font><font color="#3333ff">struct</font> eCommand eCode<font color="#ff0000">[</font><font color="#ff0000">]</font> = <font color="#ff0000">{</font><br><font color="#009900"><big><b>// S T A N D B Y - M O D E<br></b></big>// a_1:@0</font><br>   <font color="#ff0000">{</font>E_CALL,    driver_m_standby_init, 0,     0<font color="#ff0000">}</font>,<font color="#009900">// 0 Standby-MODE-Initialisation</font><br><font color="#009900">// a_2:@1</font><br>   <font color="#ff0000">{</font>E_CALL,    driver_sensor,     0,         0<font color="#ff0000">}</font>,<font color="#009900">// 1</font><br>   <font color="#ff0000">{</font>E_IF_REL,  mode_switch_1,     0,      r_a3<font color="#ff0000">}</font>,<font color="#009900">// 2 Mode-switch-test: jmp into active-mode @a_3</font><br>   <font color="#ff0000">{</font>E_RELEASE, show_standby_mode, 0,   a_c_ssm<font color="#ff0000">}</font>,<font color="#009900">// 3 displays spent time in standby-mode</font><br>   <font color="#ff0000">{</font>E_FUTURE,  time_trigger,Period_standby,a_2<font color="#ff0000">}</font>,<font color="#009900">// 4 looping to a_2</font><br>   <font color="#ff0000">{</font>E_RETURN,  0,                 0,         0<font color="#ff0000">}</font>,<font color="#009900">// 5</font><br><br><font color="#009900"><big><b>// R U N N I N G - M O D E<br></b></big></font><font color="#009900">// a_3:@6                                       // start of running-mode</font><br><font color="#009900">// start of running-mode<br></font>   <font color="#ff0000">{</font>E_CALL,    driver_m_running_init, 0,     0<font color="#ff0000">}</font>,<font color="#009900">// 6 Running-MODE-Initialisation</font><br><font color="#009900"><b>// </b><b>D E L A Y  -  U N I T</b><br></font>   <font color="#ff0000">{</font>E_FUTURE,  time_trigger,   1000,       a_4<font color="#ff0000">}</font>,<font color="#009900">// 7 give the hardware some time for initilisation</font><br>   <font color="#ff0000">{</font>E_RETURN,  0,                 0,         0<font color="#ff0000">}</font>,<font color="#009900">// 8</font><br><br><font color="#009900">// a_4:@9      1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 </font><font color="#009900">   this is block 1 of Running-Mode</font><br>   <font color="#ff0000">{</font>E_IF,      mode_switch_2,     0,       a_1<font color="#ff0000">}</font>,<font color="#009900">//  9 Mode-switch-test: jmp into standby-mode @a_1</font><br><font color="#009900"><b>// DRIVER-Calls</b><br></font>   <font color="#ff0000">{</font>E_CALL,    driver_actuator,   0,         0<font color="#ff0000">}</font>,<font color="#009900">// 10 THE DRIVERS of block 1</font><br>   <font color="#ff0000">{</font>E_CALL,    driver_sensor,     0,         0<font color="#ff0000">}</font>,<font color="#009900">// 11</font><br>   <font color="#ff0000">{</font>E_CALL,    driver_OH2MC,      0,         0<font color="#ff0000">}</font>,<font color="#009900">// 12</font><br>   <font color="#ff0000">{</font>E_CALL,    driver_DC2MC,      0,         0<font color="#ff0000">}</font>,<font color="#009900">// 13</font><br><b><font color="#009900">// <a href="#TASKS">THE TASKS</a> of block 1<br></font></b>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, motor_control,&nbsp;&nbsp;&nbsp;&nbsp; 0, a_c_motor<font color="#ff0000">}</font>,<font color="#009900">// 14 processes output from obstacle-handling and direction-change, writes to motor-ports M1,M2</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, obstacle_handling, 0, a_c_oh&nbsp;&nbsp; <font color="#ff0000">}</font>,<font color="#009900">// 15 checks if the robot hit any obstacle</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, dir_change,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0, a_c_dc&nbsp;  <font color="#ff0000">}</font>,<font color="#009900">// 16 randomly choosen direction change</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, show_running_mode, 0, a_c_srm&nbsp; <font color="#ff0000">}</font>,<font color="#009900">// 17 show, that we are in running-mode:update user-display, (blinking "-")</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_FUTURE_REL,time_trigger,Period_running,2<font color="#ff0000">}</font>,<font color="#009900">// 18 set time-trigger, loop to block 2</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RETURN,  0,                 0,         0<font color="#ff0000">}</font>,<font color="#009900">// 19</font><br><br><b><font color="#009900">// a_5:@20&nbsp;&nbsp;&nbsp;&nbsp; 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2<br></font></b>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_actuator,&nbsp;&nbsp; 0,         0<font color="#ff0000">}</font>,<font color="#009900">// 20 this is block 2 of Running-Mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_sensor,&nbsp;&nbsp;&nbsp;  0,         0<font color="#ff0000">}</font>,<font color="#009900">// 21</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_OH2MC,&nbsp;&nbsp;&nbsp;&nbsp;  0,         0<font color="#ff0000">}</font>,<font color="#009900">// 22</font><br><b><font color="#009900">// THE TASKS of block 2</font></b><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, motor_control,&nbsp;&nbsp;&nbsp;&nbsp; 0, a_c_motor<font color="#ff0000">}</font>,<font color="#009900">// 23 processes output from obstacle-handling and direction-change, writes to motor-ports M1,M2</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, obstacle_handling, 0, a_c_oh&nbsp;&nbsp; <font color="#ff0000">}</font>,<font color="#009900">// 24 checks if the robot hit any obstacle</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_FUTURE_REL,time_trigger,Period_running,2<font color="#ff0000">}</font>,<font color="#009900">// 25 set time-trigger, loop to block 3</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RETURN,   0,                0,         0<font color="#ff0000">}</font>,<font color="#009900">// 26</font><br><br><font color="#009900">// a_6@27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_actuator,&nbsp;&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 27 this is block 3 of Running-Mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_sensor,&nbsp;&nbsp;&nbsp;  0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 28</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_OH2MC,&nbsp;&nbsp;&nbsp;&nbsp;  0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 29</font><br><font color="#009900">// THE TASKS of block 3</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, motor_control,&nbsp;&nbsp;&nbsp;&nbsp; 0, a_c_motor<font color="#ff0000">}</font>,<font color="#009900">// 30 processes output from obstacle-handling and direction-change, writes to motor-ports M1,M2</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, obstacle_handling, 0, a_c_oh&nbsp;&nbsp; <font color="#ff0000">}</font>,<font color="#009900">// 31 checks if the robot hit any obstacle</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_FUTURE_REL,time_trigger,Period_running,2<font color="#ff0000">}</font>,<font color="#009900">// 32 set time-trigger, loop to block 4</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RETURN, 0,                  0,         0<font color="#ff0000">}</font>,<font color="#009900">// 33</font><br><br><font color="#009900">// a_7@34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_actuator,&nbsp;&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 34 this is block 4 of Running-Mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_sensor,&nbsp;&nbsp;&nbsp;  0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 35</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_OH2MC,&nbsp;&nbsp;&nbsp;&nbsp;  0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 36</font><br><font color="#009900">// THE TASKS of block 4</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, motor_control,&nbsp;&nbsp;&nbsp;&nbsp; 0, a_c_motor<font color="#ff0000">}</font>,<font color="#009900">// 37 processes output from obstacle-handling and direction-change, writes to motor-ports M1,M2</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, obstacle_handling, 0, a_c_oh&nbsp;&nbsp; <font color="#ff0000">}</font>,<font color="#009900">// 38 checks if the robot hit any obstacle</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_FUTURE_REL,time_trigger,Period_running,2<font color="#ff0000">}</font>,<font color="#009900">// 39 set time-trigger, loop to block 5</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RETURN,              0,     0,         0<font color="#ff0000">}</font>,<font color="#009900">// 40</font><br><br><font color="#009900">// a_8@41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_actuator,&nbsp;&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 41 this is block 5 of Running-Mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_sensor,&nbsp;&nbsp;&nbsp;  0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 42</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp;&nbsp; driver_OH2MC,&nbsp;&nbsp;&nbsp;&nbsp;  0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 43</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <br><font color="#009900">// THE TASKS of block 5<br></font>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, motor_control,&nbsp;&nbsp;&nbsp;&nbsp; 0, a_c_motor<font color="#ff0000">}</font>,<font color="#009900">// 44 processes output from obstacle-handling and direction-change, writes to motor-ports M1,M2</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RELEASE, obstacle_handling, 0, a_c_oh&nbsp;&nbsp; <font color="#ff0000">}</font>,<font color="#009900">// 45 checks if the robot hit any obstacle</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_FUTURE,time_trigger, Period_running, a_4<font color="#ff0000">}</font>,<font color="#009900">// 46 set time-triggers, loop back to start of "running"-mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RETURN,         0,          0,         0<font color="#ff0000">}</font>,<font color="#009900">// 47</font><br><br><font color="#009900">// handling for timeout of task show_standby_mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CANCEL, show_standby_mode,&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;     0<font color="#ff0000">}</font>,<font color="#009900">// 48</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp; clean_up_sstandbym, 0,&nbsp;&nbsp;    &nbsp;&nbsp; 0<font color="#ff0000">}</font>,<font color="#009900">// 49</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_JUMP,&nbsp;&nbsp; 0,                  0,       a_1<font color="#ff0000">}</font>,<font color="#009900">// 50 restart standby-mode</font><br><br><font color="#009900">// I could use a handling-code for each of the 5 blocks, but that is too much e_code ;-)<br>// handling for timeout of task show_running_mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CANCEL, show_running_mode,&nbsp; 0,&nbsp;&nbsp;&nbsp;    &nbsp; 0<font color="#ff0000">}</font>,<font color="#009900">// 51</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp; clean_up_srunningm, 0,&nbsp;   &nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 52</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_JUMP,&nbsp;&nbsp; 0,                  0,       a_4<font color="#ff0000">}</font>,<font color="#009900">// 53 goto eblock 1 of running-mode</font><br><br><font color="#009900">// handling for timeout of task direction_control</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CANCEL, dir_change,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;     0<font color="#ff0000">}</font>,<font color="#009900">// 54</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp; clean_up_dc,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,&nbsp;    &nbsp;&nbsp;&nbsp; 0<font color="#ff0000">}</font>,<font color="#009900">// 55</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_JUMP,&nbsp;&nbsp; 0,                  0,       a_4<font color="#ff0000">}</font>,<font color="#009900">// 56</font> <font color="#009900">goto eblock 1 of running-mode</font><br><br><font color="#009900">// handling for timeout of task obstacle_handling</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CANCEL, show_running_mode,&nbsp; 0,&nbsp;&nbsp;&nbsp;    &nbsp; 0<font color="#ff0000">}</font>,<font color="#009900">// 57</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp; clean_up_oh,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,&nbsp;   &nbsp;&nbsp;&nbsp;  0<font color="#ff0000">}</font>,<font color="#009900">// 58</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_JUMP,&nbsp;&nbsp; 0,                  0,       a_4<font color="#ff0000">}</font>,<font color="#009900">// 59</font> <font color="#009900">goto eblock 1 of running-mode</font><br><br><font color="#009900">// handling for timeout of task motor_control</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CANCEL, show_running_mode,&nbsp; 0,&nbsp;&nbsp;&nbsp;&nbsp;     0<font color="#ff0000">}</font>,<font color="#009900">// 60</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_CALL,&nbsp;&nbsp; clean_up_mc,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0,&nbsp;    &nbsp;&nbsp;&nbsp; 0<font color="#ff0000">}</font>,<font color="#009900">// 61</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_JUMP,&nbsp;&nbsp; 0,                  0,       a_4<font color="#ff0000">}</font>,<font color="#009900">// 62</font> <font color="#009900">goto eblock 1 of running-mode</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>E_RETURN, 0,                  0,         0<font color="#ff0000">}</font>,<font color="#009900">// 63 </font><br><font color="#ff0000">}</font>;<br><br><font color="#3333ff">#define</font> E_CODE_MAX 63<br><font color="#3333ff">unsigned </font><font color="#3333ff">int</font> e_PC;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900"> // E-Code Program Counter (0..63)</font><br><font color="#3333ff">unsigned </font><font color="#3333ff">int</font> wrapper<font color="#ff0000">[</font>20<font color="#ff0000">]</font>;<br><font color="#009900"><br><a name="TRIGGER_STRUCTURE"></a><b>// Trigger structure</b></font><br><font color="#3333ff">struct</font> trigger<br><font color="#ff0000">{</font><font color="#009900">                                   // trigger function returns </font><font color="#009900">boolean if triggered<br></font>&nbsp;&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">int</font>  trigger;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#009900">// pointer to an adresss in the E Code</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">int</font>  e_address;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#009900">// system start time in ms</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">long</font> trigger_start;&nbsp;&nbsp;&nbsp; <font color="#009900">// trigger activation-time in ms</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">long</font> trigger_delta;&nbsp;&nbsp;&nbsp; <font color="#009900">// time after which trigger becomes true</font><br><font color="#ff0000">}</font>;<br><br><font color="#3333ff">#define</font> MAX_TRIGGER 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900"> // max index in trigger_queue (21 Entries)</font><br><font color="#3333ff">#define</font> FREE_TRIGGER 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900"> //</font><br><font color="#3333ff"><a name="TRIGGER_QUEUE"></a></font><br><font color="#3333ff">static </font><font color="#3333ff">struct</font> <font color="#cc33cc">trigger</font> triggers<font color="#ff0000">[</font>MAX_TRIGGER+1<font color="#ff0000">]</font>;<font color="#009900">// the trigger_queue</font><br><font color="#3333ff">unsigned </font><font color="#3333ff">long</font> msleep_wakeup = 0;&nbsp;&nbsp;&nbsp; <font color="#009900">// the next time-instant for the emachine to wake up</font><br><font color="#3333ff">unsigned </font><font color="#3333ff">long</font> start_time&nbsp;&nbsp;&nbsp; = 0;&nbsp;&nbsp;&nbsp; <font color="#009900">// start-time of the emachine</font><br><font color="#3333ff"><a name="TASK_SEM"></a></font><br><font color="#3333ff">static <font color="#cc33cc">tid_t</font></font> task_sem<font color="#ff0000">[</font><font color="#ff0000">]</font> = <font color="#ff0000">{</font>FREE_TASK,FREE_TASK,FREE_TASK,FREE_TASK,FREE_TASK,FREE_TASK,FREE_TASK,FREE_TASK<font color="#ff0000">}</font>;<br><br><font color="#009900">// The different directions of the vehicle<br></font><font color="#009900"><a name="DIR_T"></a></font><font color="#3333ff">enum </font><font color="#cc33cc">dir_t</font><font color="#cc33cc"> </font><font color="#ff0000">{</font>turn_left, turn_right, turn_left_back, turn_right_back, forward, backward, stop, idle, nothing<font color="#ff0000">}</font>;<br><br><font color="#3333ff">static </font><font color="#3333ff">enum </font><font color="#cc33cc">dir_t </font>new_direction = nothing;&nbsp;&nbsp;&nbsp; <font color="#009900">//</font><br><big><b><font color="#009900">//\\ static </font><font color="#009900">enum </font></b></big><font color="#009900"><big><b>dir_t new_direction = nothing;</b></big><b> \\unsigned char MOTOR_ACTIVE = FALSE;</b></font><br><br><font color="#009900">// The sensor actions that can occur</font><br><font color="#3333ff"><a name="SENSOR_STATE"></a></font><font color="#3333ff">enum </font><font color="#cc33cc">sensor_state</font> <font color="#ff0000">{</font> hit_front_center, hit_front_left, hit_front_right,<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    hit_back_center,&nbsp; hit_back_left,&nbsp; hit_back_right, NON <font color="#ff0000">}</font>;<br><br><font color="#3333ff"><a name="DRIVING_COMMAND"></a></font><font color="#3333ff">struct</font> <font color="#cc33cc">driving_command</font> <font color="#ff0000">{</font>&nbsp;&nbsp; <font color="#009900">// used by Tasks Direction-Change, Obstacle-Handling and Motor-Control</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">int</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; priority;&nbsp;&nbsp;&nbsp; <font color="#009900">//</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">enum </font><font color="#cc33cc">dir_t</font><font color="#cc33cc"> </font> direction;&nbsp;&nbsp; <font color="#009900">//</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff"><font color="#cc33cc">boolean </font></font>&nbsp;&nbsp;&nbsp; changed;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// set true, if driving_command has changed</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">int</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; speed;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">//</font><br>&nbsp;&nbsp;&nbsp; signed <font color="#3333ff">long</font> duration;&nbsp;&nbsp;&nbsp; <font color="#009900">// duration of the command in milliseconds</font><br><font color="#ff0000">}</font>;<br><br><font color="#009900">// used by Task Motor-control</font><br><font color="#3333ff">static </font><font color="#3333ff">struct</font> <font color="#cc33cc">driving_command</font> active_command;<br><font color="#3333ff">unsigned </font><font color="#3333ff"><font color="#3333ff">char </font></font>*RECEIVED ="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ";<font color="#009900">// packet message-buffer, used commands are "11" and "22"</font><br><font color="#3333ff">unsigned </font><font color="#3333ff"><font color="#3333ff">char </font></font>task_lock = TRUE;&nbsp;&nbsp; <font color="#009900">// task may only run, after emachine has finished it's work<br></font><br><b><big><font color="#009900">///////////<br><a name="PORTS"></a>// PORTS //<br>///////////</font></big></b><br><font color="#3333ff">static </font><font color="#3333ff">struct</font> <font color="#cc33cc">driving_command</font> OH_OUT;<br><font color="#3333ff">static </font><font color="#3333ff">struct</font> <font color="#cc33cc">driving_command</font> MC_IN_OH;<br><font color="#3333ff">static </font><font color="#3333ff">struct</font> <font color="#cc33cc">driving_command</font> DC_OUT;<br><font color="#3333ff">static </font><font color="#3333ff">struct</font> <font color="#cc33cc">driving_command</font> MC_IN_DC;<br><br><font color="#3333ff">static </font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font> S1, S2;&nbsp;&nbsp;&nbsp; <font color="#009900">// Values of input-sensors</font><br><font color="#3333ff">static </font><font color="#cc33cc">MotorDirection </font>S3;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// actual direction of the vehicle</font><br><font color="#3333ff">static </font><font color="#cc33cc">MotorDirection </font>M1,M2;&nbsp;&nbsp; <font color="#009900">// M1=right motor, M2=left motor, //\\M3; M3=(optional) drawing-motor</font><br><font color="#3333ff">static </font><font color="#3333ff">int</font> SPEED;&nbsp; <font color="#009900">//, PAINT;&nbsp; // Port Paint is not used in this application, you can extend the robot, to control a 3rd motor with a pen on it in order to draw</font><br><font color="#3333ff"><font color="#cc33cc">boolean </font></font>BREC=FALSE;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#009900">// port set by brickOS if a ir-packet has been received</font><br><br><font color="#009900"><b>// forward-declarations for the compiler</b></font><br><font color="#3333ff">unsigned long</font> <a href="#GET_NEW_WAKEUP_TIME">get_new_wakeup_time</a><font color="#ff0000">( </font><font color="#ff0000">)</font><b>;<br></b><font color="#3333ff"><font color="#cc33cc">boolean</font></font><font color="#3333ff"> </font><a href="#TRIGGER_CHECK">trigger_check</a><font color="#ff0000">(</font> <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> i <font color="#ff0000">)</font>; <font color="#009900">// calls the trigger method</font><br><font color="#3333ff">int </font><a href="#INVOKE">invoke</a><font color="#ff0000">(</font> <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> e_PC <font color="#ff0000">)</font>;         <font color="#009900">// executes a block of E-Commands till E_RETURN</font><br><font color="#3333ff">int </font><a href="#ERR">err</a><font color="#ff0000">(</font><font color="#3333ff">int</font> error<font color="#ff0000">)</font>;<font color="#009900">                      // displays errornumber error</font><br><font color="#3333ff">enum </font><font color="#cc33cc">sensor_state</font> <a href="#CHECK_SENSORS">check_sensors </a><font color="#ff0000">()</font>;      <font color="#009900">// checks if we were hit</font><br><font color="#3333ff"><font color="#cc33cc">boolean </font></font><a href="#TIME">time</a><font color="#ff0000">(</font> <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> tr_index <font color="#ff0000">)</font>;&nbsp;&nbsp; <font color="#009900">// testing of time-trigger</font><br><font color="#3333ff">void </font><a href="#T_MOTOR">Task_motor_control</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#T_DIRECTION">Task_direction_change</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#T_OBSTACLE">Task_obstacle_handling</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#T_STANDBY">Task_show_standby_mode</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#T_RUNNING">Task_show_running_mode</a><font color="#ff0000">()</font>;<br><br><font color="#009900">// Driver forward declarations</font><br><font color="#3333ff">void </font><a href="#D_SENSOR">Driver_sensor_input</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#D_MOTOR">Driver_motor_output</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#D_OH2MC">Driver_oh2mc</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#D_DC2MC">Driver_dc2mc</a><font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#D_STANDBY_INIT">Driver_mode_standby_init</a> <font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#D_RUNNING_INIT">Driver_mode_running_init</a> <font color="#ff0000">()</font>;<br><font color="#3333ff">void </font><a href="#D_MOTORS_OFF">Driver_motors_off</a><font color="#ff0000">(</font><font color="#ff0000">)</font>;<br><font color="#3333ff">void </font><a href="#D_SENSORS_OFF">Driver_sensors_off</a><font color="#ff0000">(</font><font color="#ff0000">)</font>;<br><br><font color="#3333ff">int</font>  <a href="#CANCEL_OH">Cancel_oh</a><font color="#ff0000">()</font>;<br><font color="#3333ff">int</font>  <a href="#CANCEL_DC">Cancel_dc</a><font color="#ff0000">()</font>;<br><font color="#3333ff">int</font>  <a href="#CANCEL_MC">Cancel_mc</a><font color="#ff0000">()</font>;<br><font color="#3333ff">int</font>  <a href="#CANCEL_RUNNING">Cancel_running</a><font color="#ff0000">()</font>;<br><font color="#3333ff">int</font>  <a href="#CANCEL_STANDBY">Cancel_standby</a><font color="#ff0000">()</font>;<br><br><font color="#009900">// Condtional-functions forward-declarations</font><br><font color="#3333ff"><font color="#cc33cc">boolean</font></font><font color="#3333ff"> </font><a href="#C_RUNNING">Condition_running</a><font color="#ff0000">()</font>;<br><font color="#3333ff"><font color="#cc33cc">boolean</font></font><font color="#3333ff"> </font><a href="#C_STANDBY">Condition_standby</a><font color="#ff0000">()</font>;<br><br><font color="#3333ff"><a name="MY_MESSAGE_HANDLER"></a>void</font><font color="#3333ff"> </font>my_message_handler<font color="#ff0000">(</font><font color="#3333ff">const</font> unsigned <font color="#3333ff">char </font>*data, unsigned <font color="#3333ff">char </font>length<font color="#ff0000">)</font><br><font color="#ff0000">{</font><br>&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> i;<br>&nbsp; BREC = TRUE;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">       // set port BREC, so that the condtion-function </font><br>&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>length&gt;5<font color="#ff0000">)</font> length=5; <font color="#009900">   // </font><font color="#009900">"Condition_running" can check this</font><br>&nbsp; <font color="#3333ff">for</font> <font color="#ff0000">(</font>i=0; i&lt;length; i++<font color="#ff0000">)</font><br>&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *<font color="#ff0000">(</font>RECEIVED+i<font color="#ff0000">)</font> = *<font color="#ff0000">(</font>data+i<font color="#ff0000">)</font>;<br>&nbsp; <font color="#ff0000">}</font>&nbsp; <font color="#009900">// for<br></font><font color="#ff0000">}</font>&nbsp; <font color="#009900">// <a href="#MAIN">my_message_handler</a></font><br><br><big><b><font color="#009900">///////////////////////<br><a name="MAIN"></a>// MAIN == E MACHINE //<br>///////////////////////</font></b></big><br><b><font color="#3333ff">int</font> main<font color="#ff0000">(</font><font color="#3333ff">int</font> argc, <font color="#3333ff"><font color="#3333ff">char </font></font>**argv<font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> i = 0;<br>&nbsp;&nbsp; <font color="#3333ff">int</font>  error&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; <font color="#3333ff">long</font> time2wait = 0;<br><br> &nbsp; lnp_integrity_set_handler<font color="#ff0000">(</font> my_message_handler <font color="#ff0000">)</font>;<br><font color="#009900"><br>// enter tasks</font><br>   <a name="WRAPPER"></a>wrapper<font color="#ff0000">[</font>motor_control<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Task_motor_control;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>obstacle_handling<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp; = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Task_obstacle_handling;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>dir_change<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Task_direction_change;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>show_standby_mode<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp; = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Task_show_standby_mode;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>show_running_mode<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp; = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Task_show_running_mode;<br><font color="#009900"><br>// enter drivers<br></font>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>driver_sensor<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Driver_sensor_input;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>driver_actuator<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Driver_motor_output;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>driver_OH2MC<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Driver_oh2mc;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>driver_DC2MC<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Driver_dc2mc;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>driver_m_standby_init<font color="#ff0000">]</font>= <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Driver_mode_standby_init;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>driver_m_running_init<font color="#ff0000">]</font>= <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Driver_mode_running_init;<br><br><font color="#009900">// enter conditional-functions</font><br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>mode_switch_1<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Condition_running;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>mode_switch_2<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Condition_standby;<br><br><font color="#009900">// enter handler-function for clean-up while canceling tasks<br></font>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>clean_up_oh<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Cancel_oh;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>clean_up_dc<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Cancel_dc;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>clean_up_mc<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Cancel_mc;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>clean_up_sstandbym<font color="#ff0000">]</font>&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Cancel_standby;<br>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>clean_up_srunningm<font color="#ff0000">]</font>&nbsp;&nbsp; = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;Cancel_running;<br><br><font color="#009900">// enter all kind of triggers; we only use time trigger<br></font>&nbsp;&nbsp; wrapper<font color="#ff0000">[</font>time_trigger<font color="#ff0000">]</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = <font color="#ff0000">(</font><font color="#3333ff">unsigned </font><font color="#3333ff">int</font><font color="#ff0000">)</font> &amp;time;<br><br>&nbsp;&nbsp; <font color="#3333ff">for</font> <font color="#ff0000">(</font>i=0; i&lt;MAX_TRIGGER; i++<font color="#ff0000">)</font> triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.trigger=FREE_TRIGGER; <font color="#009900">// init trigger_queue</font><br>&nbsp;&nbsp; e_PC = 0;<br>&nbsp;&nbsp; start_time&nbsp;&nbsp;&nbsp; = get_system_up_time<font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp; msleep_wakeup = start_time;<br><font color="#009900"><br><a name="AFTER_INVOKE"></a>// start execution of first e-block till first E_RETURN instruction or ERROR</font><br>&nbsp;&nbsp; error = <a href="#INVOKE">invoke</a><font color="#ff0000">(</font> e_PC <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>error&lt;0<font color="#ff0000">)</font> err<font color="#ff0000">(</font>error<font color="#ff0000">)</font>;<br>&nbsp;  <a name="AFTER_TRIGGER_CHECK"></a><font color="#3333ff">while</font><font color="#ff0000"> (</font> !shutdown_requested <font color="#ff0000">(</font><font color="#ff0000">)</font> <font color="#ff0000">)</font>              <font color="#009900">// test </font><font color="#009900">if user presses on-off key</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br> <font color="#009900">     // check all triggers</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">for</font> <font color="#ff0000">(</font> i=0; i&lt;=MAX_TRIGGER; i++ <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> <a href="#TRIGGER_CHECK">trigger_check</a><font color="#ff0000">(</font> i <font color="#ff0000">)</font> == TRUE <font color="#ff0000">)</font>       <font color="#009900">// delete trigger from trigger queue</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.trigger = FREE_TRIGGER;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e_PC = triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.e_address;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// set Program Counter to e_address</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; error = <a href="#INVOKE">invoke</a><font color="#ff0000">(</font> e_PC <font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// execute a block of e-code</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <font color="#3333ff">if </font><font color="#ff0000">(</font>error&lt;0<font color="#ff0000">)</font> err<font color="#ff0000">(</font>error<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font> <font color="#009900">// </font><font color="#3333ff"><font color="#009900">if</font><br>&nbsp;</font>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font> <font color="#009900">// for</font><br><br>      <font color="#009900">// compute the next time for the emachine to wake up (find earliest trigger)<font color="#000000"><br></font></font>      msleep_wakeup = <a href="#GET_NEW_WAKEUP_TIME">get_new_wakeup_time</a><font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; time2wait =&nbsp; <font color="#ff0000">(</font>msleep_wakeup - get_system_up_time<font color="#ff0000">(</font><font color="#ff0000">)</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> time2wait&nbsp; &gt; time_eps <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; msleep<font color="#ff0000">(</font> time2wait - time_eps <font color="#ff0000">)</font>; <font color="#009900">// parameter of msleep: </font><font color="#009900">unsigned int!!!</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// during msleep-operation, the OS will execute all released tasks</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font>&nbsp; <font color="#009900">// if</font><br>&nbsp;&nbsp; <font color="#ff0000">}</font>&nbsp; <font color="#009900">// while</font><br>&nbsp;&nbsp; <font color="#3333ff">return </font>0;<br><font color="#ff0000">}</font>; <font color="#009900">// main</font><br><br><font color="#009900"><b><big><a name="TASKS">///////////////<br>// T A S K S </a>//<br>///////////////</big></b></font><font color="#009900"><br><br></font><font color="#3333ff"><a name="T_MOTOR"></a></font><font color="#009900"><big><b>// TASK: motor-control: select the higher prioritized command, controls duration of actual command</b></big><br>// Input-Ports:  MC_IN_OH, MC_IN_DC<br>// Output-Ports: M1,M2</font><br><b><font color="#3333ff">void</font> Task_motor_control<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font>&nbsp;&nbsp; <font color="#009900">// IN-port1: MC_IN_DC .... driving_command structure<br>    // IN-port2: MC_IN_OH .... driving_command structure<br><br>    // OUT-port1: M1 .... driving direction motor A<br>    // OUT-port2: M2 .... driving direction motor B</font><br><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> MC_IN_OH.changed == TRUE <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp; <font color="#009900">// we were hit</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MC_IN_OH.changed = FALSE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> MC_IN_OH.priority &gt; active_command.priority || active_command.duration &lt;= 0 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active_command = MC_IN_OH;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dsound_system<font color="#ff0000">(</font> DSOUND_BEEP <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font>'H',3<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// display info, that vehicle was hit</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> MC_IN_DC.changed == TRUE <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MC_IN_DC.changed = FALSE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> MC_IN_DC.priority &gt; active_command.priority || active_command.duration &lt;= 0 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active_command = MC_IN_DC;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font>'U',3<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// display info, that vehicle decided to change direction</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br><br>&nbsp;&nbsp;&nbsp; <a name="DURATION_CONTROL"></a><font color="#3333ff">if </font><font color="#ff0000">(</font> active_command.duration &gt; 0&nbsp; <font color="#ff0000">)</font><font color="#009900">          // check direction</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp;&nbsp; // duration //\\MOTOR_ACTIVE = TRUE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch <font color="#ff0000">(</font> active_command.direction <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp; // check direction<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> forward:<br>              &nbsp; cputc<font color="#ff0000">(</font>'F',3<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// adjust motors</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  M1 = fwd;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  M2 = fwd;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> turn_left:<br>             &nbsp;&nbsp; cputc<font color="#ff0000">(</font>'L',3<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// driving rev, hit right</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  M1 = fwd;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M2 = brake;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> turn_right:<br>                cputc<font color="#ff0000">(</font>'R',3<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// driving rev, hit left</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  M1 = brake;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M2 = fwd;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> turn_right_back:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font>'R',3<font color="#ff0000">)</font>;<br>                cputc<font color="#ff0000">(</font>'R',4<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  M1 = rev;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M2 = brake;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> turn_left_back:&nbsp; <font color="#009900">// driving fwd, hit right</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font>'L',3<font color="#ff0000">)</font>;<br>                cputc<font color="#ff0000">(</font>'L',4<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M1 = brake;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  M2 = rev;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> backward:<br>                cputc<font color="#ff0000">(</font>'B',3<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M1 = rev;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M2 = rev;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         cputc<font color="#ff0000">(</font>'N',3<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; M1 = off;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M2 = off;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SPEED = active_command.speed;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>active_command.duration &gt; Period_running<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active_command.duration = active_command.duration - Period_running;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; active_command.duration = 0;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M1 = off;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M2 = off; <font color="#009900"><big><b>//\\&nbsp;&nbsp; MOTOR_ACTIVE = FALSE;</b></big></font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br><font color="#ff0000">}</font>&nbsp; // <font color="#009900"><a href="#AFTER_TASK">Task_motor_control</a></font><br><br><font color="#3333ff"><a name="T_DIRECTION"></a></font><font color="#009900"><big><b>// TASK: direction-change: changes driving direction randomly</b></big><br>// Input-Ports:  none<br>// Output-Ports: DC_OUT</font><br><b><font color="#3333ff">void </font>Task_direction_change<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">long</font> <font color="#3333ff">int</font> left_right = <font color="#ff0000">(</font> random<font color="#ff0000">(</font><font color="#ff0000">)</font> % 4 <font color="#ff0000">)</font>; <font color="#009900">// select new direction by random</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">long</font> int rnd2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = random</font><font color="#009900">(</font><font color="#009900">) % 123;<br></font><br>&nbsp;&nbsp;&nbsp; rnd2 = <font color="#ff0000">(</font>random <font color="#ff0000">(</font> <font color="#ff0000">)</font> % 4<font color="#ff0000">)</font> +1;<br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>left_right ==&nbsp; 0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>left_right == 7<font color="#ff0000">)</font><font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> <font color="#009900">// backward and forward should</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.priority&nbsp; = 2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// be more often than turning around</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.direction = backward;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.speed&nbsp;&nbsp;&nbsp; = MAX_SPEED/rnd2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.duration&nbsp; = 4500 + <font color="#ff0000">(</font> random <font color="#ff0000">(</font><font color="#ff0000">)</font> % 6 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.changed&nbsp;&nbsp; = TRUE;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font> <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>left_right == 1 <font color="#ff0000">)</font> || <font color="#ff0000">(</font>left_right == 6<font color="#ff0000">)</font><font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.priority&nbsp; = 2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.direction = forward;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.speed&nbsp;&nbsp;&nbsp;  = MAX_SPEED/rnd2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.duration&nbsp; = 4500 + <font color="#ff0000">(</font> random <font color="#ff0000">(</font><font color="#ff0000">)</font> % 6 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.changed&nbsp;&nbsp; = TRUE;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font> <font color="#3333ff">if </font><font color="#ff0000">(</font> left_right == 2 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.priority&nbsp; = 2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.direction = turn_left;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.speed&nbsp;&nbsp;&nbsp;  = MAX_SPEED;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.duration&nbsp; = 1000 + <font color="#ff0000">(</font> random <font color="#ff0000">(</font><font color="#ff0000">)</font> % 6 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.changed&nbsp;&nbsp; = TRUE;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font> <font color="#3333ff">if </font><font color="#ff0000">(</font> left_right == 3 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.priority&nbsp; = 2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.direction = turn_right;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.speed&nbsp;&nbsp;&nbsp;  = MAX_SPEED;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.duration&nbsp; = 1000 + <font color="#ff0000">(</font> random <font color="#ff0000">(</font><font color="#ff0000">)</font> % 6 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DC_OUT.changed&nbsp;&nbsp; = TRUE;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br><font color="#ff0000">}</font>&nbsp; <font color="#009900">// Task_direction_change</font><br><br><font color="#3333ff"><a name="SET_OH_OUT"></a></font><font color="#009900">// internal function of task obstacle-handling</font><br><b><font color="#3333ff">void </font>set_oh_out <font color="#ff0000">(</font><font color="#3333ff">enum </font><font color="#cc33cc">dir_t</font><font color="#cc33cc"> </font>dir, <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> dur, <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> prio<font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; OH_OUT.direction= dir;<br>&nbsp;&nbsp;&nbsp; OH_OUT.priority = prio;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// 4 if hit left or right, 3 if hit in center</font><br>&nbsp;&nbsp;&nbsp; OH_OUT.speed&nbsp;&nbsp;&nbsp; = MAX_SPEED;<br>&nbsp;&nbsp;&nbsp; OH_OUT.changed&nbsp; = TRUE;<br>&nbsp;&nbsp;&nbsp; OH_OUT.duration = dur;<br><font color="#ff0000">}</font>&nbsp; <font color="#009900">// <a href="#AFTER_SET_OH_OUT">set_oh_out</a></font><br><br><font color="#3333ff"><a name="CHECK_SENSORS"></a></font><font color="#009900">// internal function of tsak obstacle-handling</font><br><b><font color="#3333ff">enum </font><font color="#cc33cc">sensor_state</font> check_sensors <font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">enum </font><font color="#cc33cc">sensor_state</font> hitpoint = NON;<br><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> S1 &amp;&amp; S2 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">                  // now check the sensors</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> S3 == rev <font color="#ff0000">)</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#009900">// if the vehicle is driving backward ...</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hitpoint = hit_back_center; <font color="#009900">// ... we know that it hit something on the back</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#009900">// ... driving forward -&gt; we hit something on the front</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hitpoint = hit_front_center;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font> <font color="#3333ff">if </font><font color="#ff0000">(</font> S1 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> S3 == rev <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hitpoint = hit_back_right;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hitpoint = hit_front_right;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font> <font color="#3333ff">if </font><font color="#ff0000">(</font> S2 <font color="#ff0000">)</font> <br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> S3 == rev <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hitpoint = hit_back_left;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hitpoint = hit_front_left;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">return <a href="#AFTER_CHECK_SENSORS">hitpoint</a></font>;<br><font color="#ff0000">}</font>&nbsp; // check_sensors<br><br><font color="#3333ff"><a name="T_OBSTACLE"></a></font><font color="#009900"><b><big>// TASK: obstacle-handling: checking, whether an obstacle was hit, if hit determining new direction</big></b><br>// input-ports:  S1, S2, S3<br>// output-ports: OH_OUT<br>// check if the vehicle hit something and react on it</font><br><b><font color="#3333ff">void</font> Task_obstacle_handling<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">enum </font><font color="#cc33cc">sensor_state</font> sensors;&nbsp;  <br><a name="AFTER_CHECK_SENSORS"></a><br>    sensors = <a href="#CHECK_SENSORS">check_sensors</a><font color="#ff0000"> (</font><font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp; <font color="#009900">// enum sensor_state sensors = check_sensors </font><font color="#009900">(</font><font color="#009900">);</font><br>&nbsp;&nbsp;&nbsp; switch <font color="#ff0000">(</font> sensors <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> NON:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>new_direction !=nothing<font color="#ff0000">)</font> &amp;&amp; <font color="#ff0000">(</font>active_command.duration == 0<font color="#ff0000">)</font><font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   cputc<font color="#ff0000">(</font>'5',2<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  dsound_system<font color="#ff0000">(</font> DSOUND_BEEP <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  set_oh_out <font color="#ff0000">(</font>new_direction, 500, 2<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  new_direction = nothing;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  cputc<font color="#ff0000">(</font>'6',2<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  OH_OUT.changed = FALSE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;&nbsp; <font color="#009900">// default</font><br><br><a name="AFTER_SET_OH_OUT"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> hit_front_right:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set_oh_out<font color="#ff0000">(</font>turn_left_back, 500, 4<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new_direction = forward;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> hit_front_left:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set_oh_out<font color="#ff0000">(</font>turn_right_back, 500, 4<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new_direction = forward;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> hit_front_center:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set_oh_out<font color="#ff0000">(</font>backward, 1500, 3<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OH_OUT.speed = MAX_SPEED;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> hit_back_center:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set_oh_out<font color="#ff0000">(</font>forward, 1500, 3<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OH_OUT.speed = MAX_SPEED;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> hit_back_right:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set_oh_out<font color="#ff0000">(</font>turn_left, 500, 4<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new_direction = forward;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> hit_back_left:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set_oh_out<font color="#ff0000">(</font>turn_right, 500, 4<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new_direction = forward;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; err<font color="#ff0000">(</font>ERR_WRONG_DIRECTION<font color="#ff0000">)</font>; <font color="#009900">// will never occur!</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br><font color="#ff0000">}</font>&nbsp; <font color="#009900">// <a href="#AFTER_TASKS">Task_obstacle_handling</a></font><br><font color="#3333ff"><br><a name="T_STANDBY"></a> <font color="#009900"><big><b>// TASK: Show-Standby-mode: displayes spent time in seconds in "standby"-mode<br></b><small>// input-ports:  none<br>// output-ports: none</small></big></font><br><b>void</b></font><b> Task_show_standby_mode<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; <font color="#3333ff">static </font><font color="#3333ff">unsigned </font><font color="#3333ff">long</font> standby=0;<br>&nbsp;&nbsp; <font color="#3333ff">static </font><font color="#3333ff">long</font> cancel_standby=0;&nbsp;&nbsp; &nbsp;<font color="#009900">// for testing of cancel-instruction</font><br><br>&nbsp;&nbsp; lcd_<font color="#3333ff">unsigned</font><font color="#ff0000">(</font>standby/4<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; <font color="#009900">//&nbsp; cputw</font><font color="#009900">(standby/4</font><font color="#009900">); // hex-output</font><br>&nbsp;&nbsp; standby++;<br>&nbsp;&nbsp; cancel_standby++;<br>&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>cancel_standby==20<font color="#ff0000">)</font> sleep<font color="#ff0000">(</font>9<font color="#ff0000">)</font>;&nbsp; <font color="#009900">// simulate a task-crash in order to cause the emachine to cancel this task by violating the execution-time</font><br><font color="#ff0000">}</font>&nbsp; <font color="#009900">// <a href="#AFTER_TASKS">Task_show_standby_mode</a></font><br><font color="#009900"><br></font><font color="#009900"><a name="T_RUNNING"></a> <big><b>// TASK: show-running-mode: displays blinking "-" in order to show, we are in "running"-mode</b></big><br></font><font color="#3333ff"><font color="#009900"><big><small>// input-ports:  none<br>// output-ports: none</small></big></font><br></font><b><font color="#3333ff">void</font> Task_show_running_mode<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; <font color="#3333ff">static </font><font color="#3333ff"><font color="#cc33cc">boolean </font></font>h_1=0;<br>&nbsp;&nbsp; <font color="#3333ff">static </font><font color="#3333ff">long</font> cancel_running=0;&nbsp;&nbsp; <font color="#009900">// for testing of cancel-instruction</font><br><br>&nbsp;&nbsp; h_1 = <font color="#ff0000">(</font>h_1 == FALSE<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">//toggle h_1</font><br>&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>h_1<font color="#ff0000">)</font> cputc<font color="#ff0000">(</font>'8',5<font color="#ff0000">)</font>; <font color="#3333ff">else</font> cputc<font color="#ff0000">(</font>' ',5<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; cancel_running++;<br>&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>cancel_running==20<font color="#ff0000">)</font> sleep<font color="#ff0000">(</font>9<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// simulate a task-crash in order cause the emachine to cancel this task by violating the execution-time</font><br><font color="#ff0000">}</font><br><br><font color="#009900"><a name="DRIVERS"></a><b><big>///////////////////<br>// D R I V E R S //<br>///////////////////<br></big></b></font><font color="#3333ff"><a name="D_MOTORS_OFF"></a><b>void</b></font><b> Driver_motors_off<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font> <font color="#009900">// for fatal errors!!</font><br>    M1 = brake;<br>    M2 = brake;<br>&nbsp;&nbsp;&nbsp; motor_a_speed<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>; motor_a_dir<font color="#ff0000">(</font> M1 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp; motor_c_speed<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>; motor_c_dir<font color="#ff0000">(</font> M2 <font color="#ff0000">)</font>;<br><font color="#ff0000">}</font><br><br><b><font color="#3333ff"><a name="D_SENSORS_OFF"></a>void </font>Driver_sensors_off<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font> <font color="#009900">// for fatal errors!!</font><br>&nbsp;&nbsp; ds_passive<font color="#ff0000">(</font> &amp;SENSOR_1 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; ds_passive<font color="#ff0000">(</font> &amp;SENSOR_2 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; ds_passive<font color="#ff0000">(</font> &amp;SENSOR_3 <font color="#ff0000">)</font>;<br><font color="#ff0000">}</font><br><br><font color="#3333ff"><a name="D_MOTOR"></a></font><b><font color="#3333ff">void </font>Driver_motor_output<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; motor_a_dir<font color="#ff0000">(</font> M1 <font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// set right motor's direction</font><font color="#009900"> <b><big>//\\  motor_b_dir</big></b></font><b><big><font color="#009900">( M3 </font><font color="#009900">);</font></big></b><br>&nbsp;&nbsp;&nbsp; motor_c_dir<font color="#ff0000">(</font> M2 <font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// set left motor's direction</font><br>&nbsp;&nbsp;&nbsp; motor_a_speed<font color="#ff0000">(</font> SPEED <font color="#ff0000">)</font>;&nbsp;&nbsp; &nbsp;<font color="#009900">// set right motor's speed  <big><b>//\\ motor_b_speed</b></big></font><big><b><font color="#009900">( PAINT </font></b></big><font color="#009900"><big><b>); // not used in this version</b></big></font><br>    motor_c_speed<font color="#ff0000">(</font> SPEED <font color="#ff0000">)</font>;<br><font color="#ff0000">}</font>&nbsp; <font color="#009900">// <a href="#AFTER_DRIVER_MOTOR_OUTPUT">Driver_motor_output</a></font><br><br><font color="#009900">// sensor driver</font><br><font color="#3333ff"><a name="D_SENSOR"></a><b>void</b></font><b> Driver_sensor_input<font color="#ff0000">(</font><font color="#ff0000">)<br></font></b><font color="#ff0000">{</font><br>    S1 = TOUCH_1;       <font color="#009900">// read right sensor</font><br>    S2 = TOUCH_3;       <font color="#009900">// read left sensor</font><br><br>&nbsp;&nbsp;&nbsp; <font color="#009900">// first get the driving direction of the vehicle<br>    // - This is important because our vehicle notices when<br>    // - it hits something on the backside<br>    // - But it uses the same sensors as for the front</font><br><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">if</font> <font color="#ff0000">(</font> dm_a.dir == dm_a_pattern<font color="#ff0000">[</font>rev<font color="#ff0000">]</font> ||  <font color="#009900">// S3: get vehicle's direction</font> <font color="#009900"><big><b>//\\dm_b.dir == dm_a_pattern[rev] ||</b></big></font><br>         dm_c.dir == dm_a_pattern<font color="#ff0000">[</font>rev<font color="#ff0000">]</font> <font color="#ff0000">)</font><br>        S3 = rev;<br>    <font color="#3333ff">else</font><br>        S3 = fwd;<font color="#009900"><br>//  cputc</font><font color="#ff0000">(</font><font color="#009900">'S',0</font><font color="#ff0000">)</font><font color="#009900">;</font><br><font color="#ff0000">}</font>  <font color="#009900">// <a href="#AFTER_DRIVER_SENSOR_INPUT">Driver_sensor_input</a></font><br><br><big><b><font color="#009900">//////////////////////////////////////////////////</font><br><font color="#009900">// task-drivers for communication between tasks //<br>//////////////////////////////////////////////////</font><br></b></big><font color="#3333ff"><a name="D_OH2MC"></a><b>void</b></font><b> Driver_oh2mc<font color="#ff0000">(</font><font color="#ff0000">)</font></b> <br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; MC_IN_OH = OH_OUT;<br><font color="#009900">/*&nbsp; </font><font color="#009900">if </font><font color="#009900">(MC_IN_OH.changed == TRUE</font><font color="#009900">) </font><font color="#009900">{ // for debugging<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc</font><font color="#009900">('1',1</font><font color="#009900">);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#009900">}<br>&nbsp;&nbsp;&nbsp; </font><font color="#009900">else </font><font color="#009900">{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc</font><font color="#009900">('0',1</font><font color="#009900">);<br>&nbsp;&nbsp;&nbsp; </font><font color="#009900">} */</font><br><font color="#ff0000">}</font> <font color="#009900">// <a href="#AFTER_DRIVER_OH2MC">Driver_oh2mc</a></font><br><br><font color="#3333ff"><a name="D_DC2MC"></a><b>void</b></font><b> Driver_dc2mc<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br><font color="#009900">//  cputc('2',1); for debugging</font><br>    MC_IN_DC = DC_OUT;<br><font color="#ff0000">}</font>  <font color="#009900">// <a href="#AFTER_DRIVER_DC2MC">Driver_dc2mc</a></font><br><br><font color="#3333ff"><a name="D_STANDBY_INIT"></a><b>void</b></font><b> Driver_mode_standby_init <font color="#ff0000">(</font><font color="#3333ff">void</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; <font color="#3333ff">static </font>const note_t V<font color="#ff0000">[</font><font color="#ff0000">]</font> = <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G3, 1 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G3, 1 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G3, 1 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_E3, 2 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_PAUSE, 2 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G1, 1 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G1, 1 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G1, 1 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_E1, 2 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_PAUSE, 2 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_PAUSE, 2 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_PAUSE, 2 <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_END, 0 <font color="#ff0000">}</font><br>&nbsp;&nbsp; <font color="#ff0000">}</font>;<br><br>&nbsp;&nbsp; dsound_set_duration<font color="#ff0000">(</font>150<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; dsound_play<font color="#ff0000">(</font>V<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; cls <font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; motor_a_dir<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; motor_b_dir<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>;<br>&nbsp;  motor_c_dir<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; motor_a_speed<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>;<br>  &nbsp;motor_b_speed<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>;<br>  &nbsp;motor_c_speed<font color="#ff0000">(</font> 0 <font color="#ff0000">)</font>;<br><font color="#ff0000">}</font> <font color="#009900">// <a href="#AFTER_DRIVER_MODE_STANDBY_INIT">Driver_mode_standby_init</a><br></font><br><font color="#3333ff"><a name="D_RUNNING_INIT"></a><b>void</b></font><b> Driver_mode_running_init <font color="#ff0000">(</font><font color="#3333ff">void</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; <font color="#3333ff">static </font>const note_t V<font color="#ff0000">[</font><font color="#ff0000">]</font> = <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G3,&nbsp;&nbsp;&nbsp; 1&nbsp; <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_E3,&nbsp;&nbsp;&nbsp; 1&nbsp; <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_G3,&nbsp;&nbsp;&nbsp; 1&nbsp; <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_E3,&nbsp;&nbsp;&nbsp; 2&nbsp; <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_PAUSE, 2&nbsp; <font color="#ff0000">}</font>,<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font> PITCH_END,&nbsp;&nbsp; 0&nbsp; <font color="#ff0000">}</font><br>&nbsp; <font color="#ff0000">}</font>;<br><br>&nbsp;&nbsp; dsound_set_duration<font color="#ff0000">(</font>150<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; dsound_play<font color="#ff0000">(</font>V<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp; ds_active <font color="#ff0000">(</font> &amp;SENSOR_2 <font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// init hardware: sensors and sound</font><br>&nbsp;&nbsp; ds_passive<font color="#ff0000">(</font> &amp;SENSOR_1 <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; ds_passive<font color="#ff0000">(</font> &amp;SENSOR_3 <font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900"><big><b>//\\ dsound_stop();<br></b></big></font><br>&nbsp;&nbsp; srandom<font color="#ff0000">(</font> LIGHT<font color="#ff0000">(</font> &amp;SENSOR_2 <font color="#ff0000">)</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; ds_passive<font color="#ff0000">(</font> &amp;SENSOR_2<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; active_command.priority=&nbsp;&nbsp; 1;<br>   active_command.speed   = MAX_SPEED/4;<font color="#009900">// initializing variables of "running-mode": drive vehicle forward</font><br>&nbsp;&nbsp; active_command.duration= 500;<br>&nbsp;&nbsp; active_command.changed = FALSE;<br><br> &nbsp; OH_OUT.priority&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; DC_OUT.priority&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; MC_IN_OH.priority&nbsp; = 0;<br>&nbsp;&nbsp; MC_IN_DC.priority&nbsp; = 0;<br><br>&nbsp;&nbsp; OH_OUT.direction&nbsp;&nbsp; = idle;<br>&nbsp;&nbsp; DC_OUT.direction&nbsp;&nbsp; = idle;<br>&nbsp;&nbsp; MC_IN_OH.direction = idle;<br>&nbsp;&nbsp; MC_IN_DC.direction = idle;<br><br>&nbsp;&nbsp; OH_OUT.changed&nbsp;&nbsp;&nbsp;&nbsp; = FALSE;<br>&nbsp;&nbsp; DC_OUT.changed&nbsp;&nbsp;&nbsp;&nbsp; = FALSE;<br>&nbsp;&nbsp; MC_IN_OH.changed&nbsp;&nbsp; = FALSE;<br>&nbsp;&nbsp; MC_IN_DC.changed&nbsp;&nbsp; = FALSE;<br><br>&nbsp;&nbsp; OH_OUT.speed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; DC_OUT.speed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; MC_IN_OH.speed&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; MC_IN_DC.speed&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br><br>&nbsp;&nbsp; OH_OUT.duration&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; DC_OUT.duration&nbsp;&nbsp;&nbsp; = 0;<br>&nbsp;&nbsp; MC_IN_OH.duration&nbsp; = 0;<br>&nbsp;&nbsp; MC_IN_DC.duration&nbsp; = 0;<br>&nbsp;&nbsp; cls <font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br><font color="#ff0000">}</font> <font color="#009900">// <a href="#AFTER_DRIVER_MODE_RUNNING_INIT">Driver_mode_running_init</a></font><br><br><font color="#009900"><a name="CONDITIONS"></a><br><big><b>/////////////////////////<br>//&nbsp;C O N D I T I O N S //<br>/////////////////////////<br></b></big></font><font color="#3333ff"><font color="#cc33cc"><a name="C_RUNNING"></a><b>boolean</b></font></font><b> Condition_running<font color="#ff0000">(</font><font color="#3333ff">void</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font> <font color="#009900">// check for mode-switch to running-mode</font><br>&nbsp;&nbsp; <font color="#3333ff">static </font><font color="#3333ff"><font color="#3333ff">char </font></font>C_ModeSwitch1=0;<br><br><font color="#009900">// if no remote-control available, mode-switch can be done by pressing the "View" or "Prgm" button</font><br>&nbsp;&nbsp; <font color="#3333ff">if </font>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">(</font>dkey == KEY_VIEW<font color="#ff0000">)</font> C_ModeSwitch1 = TRUE;<br>&nbsp;&nbsp; <font color="#3333ff">else</font> <font color="#3333ff">if </font><font color="#ff0000">(</font>dkey == KEY_PRGM<font color="#ff0000">)</font> C_ModeSwitch1 = FALSE;<br>&nbsp;&nbsp; <font color="#3333ff">else</font> <font color="#3333ff">if </font><font color="#ff0000">(</font>BREC==TRUE<font color="#ff0000">)</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// Remote-Control comes from outside, Hardware-Ports to read are BREC and RECEIVED</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font>*RECEIVED,0<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dsound_system<font color="#ff0000">(</font> DSOUND_BEEP <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BREC=FALSE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">(</font><font color="#ff0000">(</font>*RECEIVED<font color="#ff0000">)</font>=='1'<font color="#ff0000">)</font> C_ModeSwitch1 = TRUE;&nbsp;&nbsp; <font color="#009900">// switch to running-mode</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font> if <font color="#ff0000">(</font><font color="#ff0000">(</font>*RECEIVED<font color="#ff0000">)</font>=='2') C_ModeSwitch1 = FALSE;&nbsp; <font color="#009900">// switch to standby-mode</font><br><font color="#009900">//&nbsp;&nbsp;&nbsp; earlier versions of remote-control:<br>//&nbsp;&nbsp;&nbsp; if&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((*RECEIVED)=='1') PORT_ModeSwitch1 = (PORT_ModeSwitch1 == FALSE);// toggle PORT_ModeSwitch1<br>//&nbsp;&nbsp;&nbsp; else if ((*RECEIVED)=='3') PAINT = fwd;<br>//&nbsp;&nbsp;&nbsp; else if ((*RECEIVED)=='4') PAINT = rev;<br></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">(</font>*RECEIVED<font color="#ff0000">)</font> = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// clear message</font><br>&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp; <font color="#3333ff">return </font>C_ModeSwitch1;<br><font color="#ff0000">}</font>  <font color="#009900">// Condition_running</font><br><br><font color="#3333ff"><font color="#cc33cc"><a name="C_STANDBY"></a><b>boolean</b></font></font><b> Condition_standby<font color="#ff0000">(</font><font color="#3333ff">void</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">                                // check, for mode-switch to standby-mode</font><br>&nbsp;&nbsp; <font color="#3333ff">return </font><font color="#ff0000">(</font>TRUE - Condition_running<font color="#ff0000">(</font><font color="#ff0000">)</font><font color="#ff0000">)</font>;&nbsp; <font color="#009900">// == opposite of Condition_running</font><br><font color="#ff0000">}</font><br><br><font color="#009900"><big><b><a name="CANCEL"></a>/////////////////////////////////////<br>// C A N C E L&nbsp; -&nbsp; H A N D L I N G //<br>/////////////////////////////////////</b></big></font><br><b><font color="#3333ff"><a name="CANCEL_OH"></a>int</font> Cancel_oh<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font>&nbsp;&nbsp; // restart the current mode<br>&nbsp;&nbsp; Driver_motors_off<font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; msleep_wakeup = get_system_up_time<font color="#ff0000">(</font> <font color="#ff0000">)</font>+3500;<br>&nbsp;&nbsp; e_PC = running_mode;<br>&nbsp;&nbsp; <font color="#3333ff">return </font>TRUE;<br><font color="#ff0000">}</font><br><br><b><font color="#3333ff"><a name="CANCEL_MC"></a>int</font> Cancel_mc<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; Driver_motors_off<font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; msleep_wakeup = get_system_up_time<font color="#ff0000">(</font> <font color="#ff0000">)</font>+3500;<br>&nbsp;&nbsp; e_PC = running_mode;<br>&nbsp;&nbsp; <font color="#3333ff">return </font>TRUE;<br><font color="#ff0000">}</font><br><br><b><font color="#3333ff"><a name="CANCEL_DC"></a>int</font> Cancel_dc<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; Driver_motors_off<font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; msleep_wakeup = get_system_up_time<font color="#ff0000">(</font> <font color="#ff0000">)</font>+3500;<br>&nbsp;&nbsp; e_PC = running_no_init;<br>&nbsp;&nbsp; <font color="#3333ff">return </font>TRUE;<br><font color="#ff0000">}</font><br><br><b><font color="#3333ff"><a name="CANCEL_RUNNING"></a>int</font> Cancel_running<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; Driver_motors_off<font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; msleep_wakeup = get_system_up_time<font color="#ff0000">(</font> <font color="#ff0000">)</font>+3500;<br>&nbsp;&nbsp; e_PC = running_no_init;<br>&nbsp;&nbsp; <font color="#3333ff">return </font>TRUE;<br><font color="#ff0000">}</font><br><br><b><font color="#3333ff"><a name="CANCEL_STANDBY"></a>int</font> Cancel_standby<font color="#ff0000">(</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp; msleep_wakeup = get_system_up_time<font color="#ff0000">(</font> <font color="#ff0000">)</font>+3500;<br>&nbsp; e_PC = running_no_init;<br>&nbsp; <font color="#3333ff">return </font>TRUE;<br><font color="#ff0000">}</font><br><br><font color="#009900">// check validity of requested index into wrapper and return physical address</font><br><font color="#3333ff"><a name="SCHEDULE"></a><b>int </b></font><b>get_wrapper<font color="#ff0000">(</font><font color="#3333ff">int </font>index<font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>index&gt;WRAPPER_MAX<font color="#ff0000">)</font>||<font color="#ff0000">(</font>index &lt; 0<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>ERR_WRAPPER;<br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">return </font><a href="#WRAPPER">wrapper</a><font color="#ff0000">[</font>index<font color="#ff0000">]</font>;               <font color="#009900">//</font><br><font color="#ff0000">}</font>  <font color="#009900">// get_wrapper</font><br><br><font color="#009900">// manage scheduling to garanty time saftey</font><br><font color="#3333ff"><a name="SCHEDULE"></a></font><b><font color="#3333ff">int</font> schedule<font color="#ff0000">(</font><font color="#3333ff">int</font> argv, <font color="#3333ff"><font color="#3333ff">char </font></font>**argc<font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">void </font><font color="#ff0000">(</font>*ptr<font color="#ff0000">)</font><font color="#ff0000">(</font>void<font color="#ff0000">)</font> = <font color="#ff0000">(</font><font color="#3333ff">void </font>*<font color="#ff0000">)</font> wrapper<font color="#ff0000">[</font> argv <font color="#ff0000">]</font>; <font color="#009900">// argv is a index to the wrapper array</font><br><br>&nbsp;&nbsp;&nbsp; while <font color="#ff0000">(</font>task_lock<font color="#ff0000">)</font> yield<font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;  <a href="#TASKS">ptr</a><font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp; task_sem<font color="#ff0000">[</font> argv <font color="#ff0000">]</font> = FREE_TASK;                 <font color="#009900">// task_sem contains either task_id if running </font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff"><a href="#AFTER_RELEASE">return</a></font> TRUE;                                  <font color="#009900">// or -1 if not</font><br><font color="#ff0000">}</font>  <font color="#009900">// <a href="#AFTER_SCHEDULE">schedule</a></font><br><br><big><b><font color="#009900">///////////////////////////////////<br></font></b></big><font color="#009900"><big><b>// T R I G G E R   M E T H O D S //<br>///////////////////////////////////</b></big><br>// time trigger checker</font><br><font color="#3333ff"><font color="#cc33cc"><a name="TIME"></a><b>boolean</b></font></font><b> time<font color="#ff0000">(</font> <font color="#3333ff">unsigned</font> <font color="#3333ff">int </font>tr_index <font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">long</font> up_time = get_system_up_time<font color="#ff0000">(</font><font color="#ff0000">)</font> - triggers<font color="#ff0000">[</font>tr_index<font color="#ff0000">]</font>.trigger_start;<br><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> up_time &lt; triggers<font color="#ff0000">[</font>tr_index<font color="#ff0000">]</font>.trigger_delta <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#AFTER_TIME"><font color="#3333ff">return</font></a> FALSE;<br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font> up_time &gt; triggers<font color="#ff0000">[</font>tr_index<font color="#ff0000">]</font>.trigger_delta +3 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font>'T',2<font color="#ff0000">)</font>;	<font color="#009900">// for debuggine, if we messed trigger more than 3 ms</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#AFTER_TIME"><font color="#3333ff">return</font></a> TRUE;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br><font color="#ff0000">}</font> <font color="#009900">// <a href="#AFTER_TIME">time</a></font><br><br><font color="#009900">// event trigger checker: not used</font><br><b><font color="#3333ff"><font color="#cc33cc">boolean</font></font> event<font color="#ff0000">(</font> <font color="#3333ff">unsigned</font> <font color="#3333ff">int </font>tr_index <font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">return </font>FALSE;<br><font color="#ff0000">}</font><br><br><font color="#009900">// task trigger checker: not used</font><br><b><font color="#3333ff"><font color="#cc33cc">boolean</font></font> task<font color="#ff0000">(</font> <font color="#3333ff">unsigned</font> <font color="#3333ff">int </font>tr_index <font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">return </font>FALSE;<br><font color="#ff0000">}</font><br><br><font color="#3333ff"><font color="#cc33cc"><a name="TRIGGER_CHECK"></a><b>boolean</b></font></font><b> trigger_check<font color="#ff0000">(</font> <font color="#3333ff">unsigned</font> <font color="#3333ff">int </font>i <font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff"><font color="#cc33cc">boolean </font></font><font color="#ff0000">(</font>*trigger_ptr<font color="#ff0000">)</font><font color="#ff0000">(</font><font color="#3333ff">int</font> tr_nr<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">int</font> tr_method = triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.trigger;<br><br>&nbsp;&nbsp;&nbsp; <font color="#009900">// if trigger is valid</font><br>    <font color="#ff0000"><a name="AFTER_TIME"></a></font><font color="#3333ff">if </font><font color="#ff0000">(</font> tr_method == 0 <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">return </font>FALSE;<br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; trigger_ptr = <font color="#ff0000">(</font><font color="#3333ff">void </font>* <font color="#ff0000">)</font> <a href="#WRAPPER">wrapper</a><font color="#ff0000">[</font> tr_method <font color="#ff0000">]</font>; <font color="#009900">// call the time method</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">return </font><font color="#000000"><a href="#TIME">trigger_ptr</a></font><font color="#ff0000">(</font> i <font color="#ff0000">)</font>;                      <font color="#009900">// call trigger function and return value</font><br>&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br><font color="#ff0000">}</font> <font color="#009900">// <a href="#AFTER_TRIGGER_CHECK">trigger_check</a></font><br><br><font color="#3333ff"><a name="GET_TRIGGER"></a><b>int </b></font><b>get_trigger<font color="#ff0000">(</font><font color="#3333ff">void</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font>        <font color="#009900">// searches for a free available trigger in trigger_queue</font><br>&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff"><font color="#3333ff">char </font></font>i;<br><br>&nbsp;&nbsp; <font color="#3333ff">for</font> <font color="#ff0000">(</font>i=0; i&lt;=MAX_TRIGGER; i++<font color="#ff0000">)</font> <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.trigger == FREE_TRIGGER<font color="#ff0000">)</font><br>         <font color="#3333ff">return </font>i;<br>&nbsp;&nbsp; <font color="#ff0000">}</font>&nbsp; <font color="#009900">// for</font><br>&nbsp;&nbsp; <a href="#AFTER_GET_TRIGGER">return</a> -1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;     <font color="#009900">// sorry, but there is no free trigger available</font><br><font color="#ff0000">}</font>&nbsp; <font color="#009900">// get_trigger</font><br><br><font color="#3333ff"><a name="GET_NEW_WAKEUP_TIME"></a><b>unsigned long</b></font><b> get_new_wakeup_time<font color="#ff0000">(</font><font color="#3333ff">void</font><font color="#ff0000">)</font></b><br><font color="#ff0000">{</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// determines the next point in time for the e machine</font><br>&nbsp;&nbsp; <font color="#3333ff">unsigned</font> <font color="#3333ff">int </font>i=0;                 <font color="#009900">// to wake up</font><br>   <font color="#3333ff">int </font>     index=-1;<br>   <font color="#3333ff">unsigned</font> <font color="#3333ff">long </font>min = 0xFFFFFFFE;   <font color="#009900">// this are 48 days!</font><br>&nbsp;&nbsp; <font color="#3333ff">unsigned </font><font color="#3333ff">long</font> temp= 0;<br><br> &nbsp; <font color="#3333ff">for</font> <font color="#ff0000">(</font>i=0; i&lt;=MAX_TRIGGER; i++<font color="#ff0000">)</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.trigger != FREE_TRIGGER<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.trigger_start + triggers<font color="#ff0000">[</font>i<font color="#ff0000">]</font>.trigger_delta;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if <font color="#ff0000">(</font>temp &lt; min<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min   = temp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; index = i;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font>  <font color="#009900">// if</font><br>      <font color="#ff0000">}</font> <font color="#009900">// if</font><br>   <font color="#ff0000">}</font> <font color="#009900">// for</font><br>&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>index!=-1<font color="#ff0000">)</font> <font color="#3333ff">return </font><font color="#ff0000">(</font>msleep_wakeup + <font color="#ff0000">(</font><font color="#3333ff">unsigned long</font><font color="#ff0000">)</font> triggers<font color="#ff0000">[</font>index<font color="#ff0000">]</font>.trigger_delta<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; <font color="#3333ff">else</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; err<font color="#ff0000">(</font>ERR_MSLEEP<font color="#ff0000">)</font>;<br>       <font color="#3333ff">return</font> -1;<br>&nbsp;&nbsp; <font color="#ff0000">}</font><br><font color="#ff0000">}</font> <font color="#009900">// <a href="#AFTER_SET_MSLEEP">get_new_wakep_time</a></font><br><br><font color="#3333ff"><a name="INVOKE"></a><b>int</b></font><b> <a href="#MAIN">invoke</a><font color="#ff0000">(</font> <font color="#3333ff">unsigned</font> <font color="#3333ff">int </font>e_PC <font color="#ff0000">)</font></b><br><font color="#ff0000">{</font><br>&nbsp;&nbsp; <font color="#3333ff">int</font> &nbsp; <font color="#ff0000">(</font>*call_ptr<font color="#ff0000">)</font><font color="#ff0000">(</font>void<font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// pointer to a function that returns int without any argument</font><br>&nbsp;&nbsp; int&nbsp;&nbsp; new_trigger = -1;<br>&nbsp;&nbsp; <font color="#3333ff">int</font> &nbsp; tt = -1;<br><br>&nbsp;&nbsp; while <font color="#ff0000">(</font> eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.command != E_RETURN <font color="#ff0000">)</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch<font color="#ff0000">(</font> eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.command <font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> E_CALL:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#3333ff"><a name="E_CALL"></a></font>call_ptr = <font color="#ff0000">(</font><font color="#3333ff">void </font>* <font color="#ff0000">)</font> wrapper<font color="#ff0000">[</font> eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method <font color="#ff0000">]</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  call_ptr <font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  e_PC++;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_PC<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff"><a name="E_RELEASE"></a><a name="AFTER_SCHEDULE"></a></font><font color="#3333ff">case</font> E_RELEASE:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font> task_sem<font color="#ff0000">[</font>eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method<font color="#ff0000">]</font>!= FREE_TASK<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#ff0000">{</font>// task cannot be released, its still running<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    cputc<font color="#ff0000">(</font>'0'+task_sem<font color="#ff0000">[</font>eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method<font color="#ff0000">]</font>,0<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    err<font color="#ff0000">(</font>ERR_RELEASE<font color="#ff0000">)</font>;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<font color="#009900">// for humans to realize what happened, we beep</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    e_PC = eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.e_address;<font color="#009900">// fetch address of time_out handling</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">break</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#ff0000"><a name="AFTER_RELEASE"></a></font><font color="#009900">// release the method "schedule" which may only run, if the emachine has done it's work</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    task_lock = TRUE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  task_sem<font color="#ff0000">[</font>eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method<font color="#ff0000">]</font> = execi<font color="#ff0000">(</font> schedule, eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method, NULL, PRIO_NORMAL, DEFAULT_STACK_SIZE<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  task_lock = FALSE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    e_PC++;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_PC<font color="#ff0000">)</font>;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a name="E_FUTURE"></a><font color="#3333ff">case</font> E_FUTURE:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  new_trigger = <a href="#GET_TRIGGER">get_trigger</a><font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#3333ff">if </font><font color="#ff0000">(</font> new_trigger != -1<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#ff0000">{</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.trigger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    tt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.e_address;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>tt&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>tt&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_PC<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.e_address&nbsp;&nbsp;&nbsp;&nbsp; = tt;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.trigger_start = get_system_up_time<font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.trigger_delta = eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.time;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  err<font color="#ff0000">(</font>ERR_FUTURE<font color="#ff0000">)</font>;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">return </font>ERR_FUTURE;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    e_PC++;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_PC<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff"><a name="E_FUTURE_REL"></a>case</font> E_FUTURE_REL:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  new_trigger = get_trigger<font color="#ff0000">(</font> <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font> new_trigger != -1<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#ff0000">{</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.trigger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  tt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  = e_PC+eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.e_address;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>tt&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>tt&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_PC<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.e_address&nbsp;&nbsp;&nbsp;&nbsp; = tt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.trigger_start = get_system_up_time<font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  triggers<font color="#ff0000">[</font>new_trigger<font color="#ff0000">]</font>.trigger_delta = eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.time;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <font color="#ff0000">}</font><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">else</font><font color="#ff0000"><br>             {</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    err<font color="#ff0000">(</font>ERR_FUTURE_REL<font color="#ff0000">)</font>;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">return </font>ERR_FUTURE_REL;<font color="#ff0000"><br>             }</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  e_PC++;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_PC<font color="#ff0000">)</font>;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a name="E_JUMP"></a><font color="#3333ff">case</font> E_JUMP:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    e_PC = eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.e_address;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_JUMP<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff"><a name="E_JUMP_REL"></a></font><font color="#3333ff">case</font> E_JUMP_REL:<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e_PC = e_PC + eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.e_address;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_JUMP_REL<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff"><a name="E_IF"></a></font><font color="#3333ff">case</font> E_IF:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  call_ptr = <font color="#ff0000">(</font><font color="#3333ff">void </font>*<font color="#ff0000">)</font> <a href="#WRAPPER">wrapper</a><font color="#ff0000">[</font> eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method<font color="#ff0000">]</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font>call_ptr <font color="#ff0000">(</font><font color="#ff0000">)</font>==TRUE<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  e_PC=eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.e_address;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  e_PC++;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_IF<font color="#ff0000">)</font>;<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff"><a name="E_IF_REL"></a></font><font color="#3333ff">case</font> E_IF_REL:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;  call_ptr = <font color="#ff0000">(</font><font color="#3333ff">void </font>*<font color="#ff0000">)</font> <a href="#WRAPPER">wrapper</a><font color="#ff0000">[</font> eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method<font color="#ff0000">]</font>;<br>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font>call_ptr <font color="#ff0000">(</font><font color="#ff0000">)</font>==TRUE<font color="#ff0000">)</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  e_PC=e_PC + eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.e_address;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">else</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  e_PC++;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">if </font><font color="#ff0000">(</font><font color="#ff0000">(</font>e_PC&lt;0<font color="#ff0000">)</font> || <font color="#ff0000">(</font>e_PC&gt;E_CODE_MAX<font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#3333ff">return </font>err<font color="#ff0000">(</font>ERR_IF_REL<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff"><a name="E_RETURN"></a></font><font color="#3333ff">case</font> E_RETURN:<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <font color="#3333ff">return </font>TRUE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff"><a name="E_CANCEL"></a></font><font color="#3333ff">case</font> E_CANCEL:&nbsp;&nbsp; <font color="#009900">// kill task with logical tasknumber given in .e_address</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   kill <font color="#ff0000">(</font>task_sem<font color="#ff0000">[</font>eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method<font color="#ff0000">]</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   task_sem<font color="#ff0000">[</font>eCode<font color="#ff0000">[</font>e_PC<font color="#ff0000">]</font>.method<font color="#ff0000">]</font> = FREE_TASK;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   cputs<font color="#ff0000">(</font><font color="#009900">"kill"</font><font color="#ff0000">)</font>; //msleep<font color="#ff0000">(</font>300<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   e_PC++;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     <font color="#3333ff">break</font>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">default</font>:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <font color="#3333ff">return </font>ERR_ILLEGAL_OPCODE;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font> <font color="#009900">// switch</font><br>   <font color="#ff0000">}</font>  <font color="#009900">// while</font><br><font color="#ff0000"><font color="#000000">   </font></font><font color="#3333ff">return </font><font color="#ff0000"><font color="#000000">TRUE;</font><br>}</font>  <font color="#009900">// <a href="#AFTER_INVOKE">invoke</a></font><br><font color="#3333ff"><br></font><font color="#3333ff"><a name="ERR"></a></font><font color="#3333ff"><b>int</b></font><b> err<font color="#ff0000">(</font><font color="#3333ff">int</font> error<font color="#ff0000">)</font><br></b><font color="#ff0000">{</font><br><font color="#3333ff">int</font> i=error;<br><br>&nbsp;&nbsp; <font color="#3333ff">if </font><font color="#ff0000">(</font>i&lt;0<font color="#ff0000">)</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp; i=-i;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font><font color="#009900">'-'</font>,5<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; <font color="#ff0000">}</font><br>   cls<font color="#ff0000">( </font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp; <font color="#3333ff">switch</font> <font color="#ff0000">(</font>error<font color="#ff0000">)</font><br>&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp;&nbsp; <font color="#009900">// check for fatal errors that causes the e-machine to stop</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> ERR_IF:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> ERR_IF_REL:<br>          cputs<font color="#ff0000">(</font><font color="#009900">"REL"</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> ERR_JUMP:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> ERR_JUMP_REL:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">case</font> ERR_PC:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputs<font color="#ff0000">(</font><font color="#009900">"Fata"</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dsound_system<font color="#ff0000">(</font> DSOUND_BEEP <font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cputc<font color="#ff0000">(</font> i + <font color="#009900">'0'</font>,1<font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Driver_motors_off<font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Driver_sensors_off<font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333ff">for</font> <font color="#ff0000">(</font>;i&gt;0;i--<font color="#ff0000">)</font>		<font color="#009900">// beeping n-times of the error-value</font><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">{</font>&nbsp; dsound_system<font color="#ff0000">(</font> DSOUND_BEEP <font color="#ff0000">)</font>;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; msleep<font color="#ff0000">(</font>300<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#ff0000">}</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">// reboot or shut down here</font><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sleep<font color="#ff0000">(</font>3600<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; <font color="#ff0000">}</font>&nbsp; <font color="#009900">// switch</font><br><br>&nbsp;&nbsp; cputs<font color="#ff0000">(</font><font color="#009900">"Err"</font><font color="#ff0000">)</font>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#009900">//</font><br>&nbsp;&nbsp; cputc<font color="#ff0000">(</font> error + <font color="#009900">'0'</font>,1<font color="#ff0000">)</font>;<br>&nbsp;&nbsp; <font color="#3333ff">for</font> <font color="#ff0000">(</font>;i&gt;0;i--<font color="#ff0000">)</font> <font color="#ff0000">{</font> dsound_system<font color="#ff0000">(</font> DSOUND_BEEP <font color="#ff0000">)</font>; msleep<font color="#ff0000">(</font>300<font color="#ff0000">)</font>;<font color="#ff0000">}</font><br>&nbsp;&nbsp; <font color="#3333ff">return </font>error;<br><font color="#ff0000">}</font> <font color="#009900">// err</font><br></pre>
+
+  
+  </ul>
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<hr size="2" width="100%">
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul type="square">
+
+
+
+
+
+
+
+
+
+
+  <li> <b><font size="+1"><a name="SOURCE-REMOTE"></a>The Code of the remote-control</font></b></li>
+<ul type="square">
+    
+  </ul>
+  <pre><font color="#3333ff">#include </font>&lt;conio.h&gt;<br><font color="#3333ff">#include </font>&lt;dsound.h&gt;<br><font color="#3333ff">#include</font> &lt;dsensor.h&gt;<br><font color="#3333ff">#include</font> &lt;stdlib.h&gt;<br><font color="#3333ff">#include</font> &lt;time.h&gt;<br><font color="#3333ff">#include</font> &lt;dmotor.h&gt;<br><font color="#3333ff">#include</font> &lt;lnp.h&gt;<br><font color="#3333ff">#include</font> &lt;dkey.h&gt;<br><br><font color="#3333ff">unsigned char</font> *mode_switch_running="11"; <font color="#009900">// to turn into running-mode</font><br><font color="#3333ff">unsigned</font> <font color="#3333ff">char</font> *mode_switch_standby="22"; <font color="#009900">// to turn into standby-mode</font><br><br><font color="#3333ff">unsigned</font> <font color="#3333ff">char</font> *down       ="33";    <font color="#009900">     // put pen down</font><br><font color="#3333ff">unsigned</font> <font color="#3333ff">char</font> *up         ="44";    <font color="#009900">     // put pen up</font><br><br><font color="#3333ff">int</font> send<font color="#ff0000">(</font><font color="#3333ff">unsigned</font> <font color="#3333ff">char</font> *data<font color="#ff0000">)</font> {<br>    lnp_integrity_write<font color="#ff0000">(</font>data,2<font color="#ff0000">)</font>;<br>    msleep<font color="#ff0000">(</font>400<font color="#ff0000">)</font>;<br>    <font color="#3333ff">return </font>1;<br><font color="#ff0000">}</font><br><br><font color="#3333ff">int</font> main<font color="#ff0000">(</font><font color="#3333ff">int</font> argc, <font color="#3333ff">char</font> **argv<font color="#ff0000">)</font> <font color="#ff0000">{</font><br>    ds_passive<font color="#ff0000">(</font> &amp;SENSOR_1 <font color="#ff0000">)</font>;<br>    ds_passive<font color="#ff0000">(</font> &amp;SENSOR_2 <font color="#ff0000">)</font>;<br>    ds_passive<font color="#ff0000">(</font> &amp;SENSOR_3 <font color="#ff0000">)</font>;<br>    dsound_stop<font color="#ff0000">(</font><font color="#ff0000">)</font>;<br>    <font color="#3333ff">while</font> <font color="#ff0000">(</font>!shutdown_requested <font color="#ff0000">(</font><font color="#ff0000">)</font><font color="#ff0000">)</font> <font color="#ff0000">{</font><br>        <font color="#3333ff">if </font><font color="#ff0000">(</font>dkey&gt;0<font color="#ff0000">)</font> <font color="#ff0000">{</font><br>            cputc<font color="#ff0000">(</font>'0'+dkey,4<font color="#ff0000">)</font>;<br>        <font color="#ff0000">}</font><br>	<font color="#3333ff">if</font> <font color="#ff0000">(</font>dkey == KEY_VIEW<font color="#ff0000">)</font> <font color="#ff0000">{</font><br>	    cputs<font color="#ff0000">(</font>"-run"<font color="#ff0000">)</font>;<br>    	send<font color="#ff0000">(</font>mode_switch_running<font color="#ff0000">)</font>;<br>    	msleep<font color="#ff0000">(</font>400<font color="#ff0000">)</font>;				<font color="#009900">// avoid multiple switch</font><br>		cputc<font color="#ff0000">(</font>' ',4<font color="#ff0000">)</font>;cputc<font color="#ff0000">(</font>' ',0<font color="#ff0000">)</font>;<br>	<font color="#ff0000">}</font><br>	<font color="#3333ff">else if</font> <font color="#ff0000">(</font>dkey == KEY_PRGM<font color="#ff0000">)</font> <font color="#ff0000">{</font><br>	    cputs<font color="#ff0000">(</font>"-pause"<font color="#ff0000">)</font>;<br>    	send<font color="#ff0000">(</font>mode_switch_standby<font color="#ff0000">)</font>;<br>    	msleep<font color="#ff0000">(</font>400<font color="#ff0000">)</font>;				<font color="#009900">// avoid multiple switch</font><br>		cputc<font color="#ff0000">(</font>' ',4<font color="#ff0000">)</font>;<br>	<font color="#ff0000">}</font><br><br><span style="color: rgb(0, 153, 0);">// we used a robot, that could also draw something with a 3rd motor, this functionality is not used here</span><br><font color="#009900">/*   if (dkey == KEY_PRGM) {<br>         flippy = (flippy==0);<br>         if   (flippy) {<br>             lnp_integrity_write(down,8);<br>             cputc('d',0);<br>         }<br>         else {<br>             lnp_integrity_write(up,8);<br>         cputc('u',0);<br>               }<br>        }  */<br></font><br>    <font color="#ff0000">}</font> <font color="#009900">// while</font><br><br>    <font color="#3333ff">return </font>0;<br><font color="#ff0000">}</font>  <font color="#009900">// main</font>
+</pre>
+
+</ul>
+
+
+
+
+ 
+<hr size="2" width="100%">
+</body></html>

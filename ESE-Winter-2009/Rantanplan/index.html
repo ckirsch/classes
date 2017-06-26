@@ -1,0 +1,51 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>CKWiki | ESE-Winter-2009 / Rantanplan </title>
+</head>
+<body>
+<p>Rantanplan: a not so stupid pathfinder... <a class='urllink' href='http://www.youtube.com/watch?v=bR4YwGPnLcI' rel='nofollow'>Watch on youtube</a>
+</p><p class='vspace'></p>
+<p><img src='http://student.cosy.sbg.ac.at/~maigner/persistent/ese/Rantanplan_1.jpg' style='border:0px;' alt='' />
+</p><p class='vspace'></p>
+<h1>Team</h1>
+<p class='vspace'></p><ul><li>Martin Aigner 
+</li><li>Alexander Baumgartner
+</li><li>Michael Brugger
+</li></ul><p class='vspace'></p><h1>Files</h1>
+<ul><li>report <a class='urllink' href='rantanplan_report.pdf' rel='nofollow'>rantanplan_report.pdf</a>
+</li><li>slides: <a class='urllink' href='rantanplan_slides.pdf' rel='nofollow'>rantanplan_slides.pdf</a>
+</li><li>source code: <a class='urllink' href='ranti_source.tar.gz' rel='nofollow'>ranti_source.tar.gz</a>
+</li><li>images and charts: <a class='urllink' href='webfiles.tar.gz' rel='nofollow'>webfiles.tar.gz</a>
+</li></ul><p class='vspace'></p><h1>Description</h1>
+<p>Rantanplan is a LEGO Mindstorms Robot. Its name origins from the most stupid dog in the wild west as known from Lucky Luke comics. But there are at least two things that Rantanplan is good at: following a track with its sniffing nose and avoiding to crush into a rock while doing so (at least most of the time).
+</p><p class='vspace'></p>
+<p>Most implementations of pathfinder robots have a fixed "nose". This results in a strange movement behaviour. That means that the robot has to frequently move left and right to check if the track changes its direction.
+</p><p class='vspace'></p>
+<p>We try to get a smoother movement behaviour by building a moveable sensor that keeps track of the path and informs the steering about a change of direction.
+</p><p class='vspace'></p>
+<p>Furthermore we want be able to handle barriers that are on the path by moving around them. Then Rantanplan has to find the path again after it got around the barrier. 
+</p><p class='vspace'></p>
+<h1>Prototype</h1>
+<p>So far we built a prototype that implements a moving color sensor and the drive of the robot.
+</p><p class='vspace'></p>
+<p><img src='http://student.cosy.sbg.ac.at/~maigner/persistent/ese/Rantanplan_history.jpg' style='border:0px;' alt='' />
+</p><p class='vspace'></p>
+<p class='vspace'></p><h1>Concurrent Task Model</h1>
+<p>On top of Rantanplan resists a revolving ultrasound sensor that checks for barriers. Because we have more than three motors (one Brick got three jacks for motors) we have to establish communication between two bricks with a distinct sensor port that can be configured to be used as a RS-485 port.
+</p><p class='vspace'></p>
+<p>One brick (A) controls the path tracking and the movement the second brick (B) controls the ultrasound sensor. Brick A periodically polls for a barrier and sends direction updates to the ultrasound sensor.
+</p><p class='vspace'></p>
+<h1>Flowchart</h1>
+<p><img src='http://student.cosy.sbg.ac.at/~maigner/persistent/ese/flow_small.jpg' style='border:0px;' alt='' />
+</p><p class='vspace'></p>
+<p><a class='urllink' href='http://student.cosy.sbg.ac.at/~maigner/persistent/ese/flow.jpg' rel='nofollow'>full size download</a>
+</p><p class='vspace'></p>
+<p class='vspace'></p></div>
+
+      </td>
+    </tr></table>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>CKWiki | ESE-Winter-2010 / SCMareSC </title>
+</head>
+<body>
+<h1>Self-collecting Mutators are Self-compacting</h1>
+<h2>An analysis about memory consumption in real-periodic systems</h2>
+<p class='vspace'></p><p>An average program often allocates temporary memory, so called short-term memory, which is discarded as the program proceeds. If we plot the amount of memory allocated on the heap against the execution time of the program, we will observe that it is growing and shrinking continuously in periods. The time axis must therefore not represent the processor or environmental time, but logical points in the program where memory is deallocated. 
+Even complex programs show this periodic behavior, for example if they are abstracted with multiple clocks.
+</p><p class='vspace'></p>
+<p>To find an allocator that has good behavior in memory consumption (which would be if the gross memory slightly differs from the net memory), I propose to have a closer look on the memory periods that exist in most programs. With the knowledge of knowing which objects are short-living and which are long-living, even a simple sequential fit allocator might give optimal results.
+</p><p class='vspace'></p>
+<p>The goal of the <strong>Self-Collecting Mutators are Self-Compacting</strong> project is to provide a memory management system that allows to analyze the periodic memory consumption, and as a consequence also the fragmentation, of programs using a time-aware memory model: The short-term memory model. The two implementations - short-term memory with compact-fit and short-term memory with regions - use alternative allocators in despite of the original implementation with <code>ptmalloc2</code>. I decided to use compact-fit as an allocator which is able to bind memory fragmentation by performing compaction if the fragmentation exceeds the limit. The implementation attempts to provide information about how many compactions are necessary for different periods. 
+For a multi-clock implementation, I used a region-based memory allocator. A clock is then bound to a region. The region-based implementation aims to prevent massive fragmentation, as memory with similar life-time is allocated into the same region.
+</p><p class='vspace'></p>
+<h2>Documentation</h2>
+<p><a class='urllink' href='presentation.pdf' rel='nofollow'>Presentation</a>
+</p><p class='vspace'></p>
+<p><a class='urllink' href='report.pdf' rel='nofollow'>Project Report</a>
+</p><p class='vspace'></p>
+<h2>Implementation</h2>
+<p><a class='urllink' href='scm_cf.tar.gz' rel='nofollow'>Short-term memory with compact-fit</a>
+<em>(Note: works only on 32bit systems)</em>
+</p><p class='vspace'></p>
+<p><a class='urllink' href='scm_regions.tar.gz' rel='nofollow'>Short-term memory with regions</a>
+</p></div>
+
+      </td>
+    </tr></table>
+</body>
+</html>

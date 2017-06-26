@@ -1,0 +1,69 @@
+<html><head><title>Distributed TDL - miniproject</title>
+<style>
+.f12 { font-family: Verdana,Helvetica,Arial; font-size: 12pt; }
+.f11 { font-family: Verdana,Helvetica,Arial; font-size: 11pt; }
+.f10 { font-family: Verdana,Helvetica,Arial; font-size: 10pt; }
+.f9 { font-family: Verdana,Helvetica,Arial; font-size: 9pt; }
+.f8 { font-family: Verdana,Helvetica,Arial; font-size: 8pt; }
+.f7 { font-family: Arial; font-size: 7pt; }
+</style>
+</head>
+<body>
+<center>
+<div style='width: 790px;' align=left>
+<h2 align=center>Distributed TDL</h2>
+
+<h3>Abstract</h3>
+
+<p class=f10>
+<a href="http://cs.uni-salzburg.at/pubs/reports/T001.pdf">TDL (Time Definition Language)</a> was created 
+within the <a href="http://www.modecs.cc">MoDECS project</a> as a successor of the <a 
+href="http://www.eecs.berkeley.edu/~fresco/giotto">Giotto</a> language for time triggered deterministic 
+computation. Its hard real-time properties makes it ideal for use in automation 
+and control engineering. 
+
+</p>
+
+<p class=f10>
+We will present the concepts and a runtime infrastructure for distributed TDL execution (bus scheduling and 
+distributed E-machine). The key concept is <i>transparent distribution</i>, i.e. there is no difference 
+observable between local and distributed excution of modules.
+A sample case study will be presented as a proof of concept.
+</p>
+
+
+<h3>Sample TDL source code</h3>
+<p class=f10>
+The following source code is an example of TDL usage for a basic counter. The application contains one task 
+and has only one mode of operation.
+<pre style='border: 1px solid #e0e0e0;'>
+<font color=blue>module</font> counter {
+  <font color=blue>const</font>
+    z = 0; <font color=gray>// a constant for easy initialization</font>
+
+  <font color=blue>actuator</font>
+    <font color=magenta>int</font> a := z <font color=blue>uses</font> set_act; <font color=gray>// use external function set_act</font>
+
+  <font color=blue>task</font> inc [<font color=brown>wcet = 1ms</font>] {
+    <font color=blue>output</font>
+      <font color=magenta>int</font> o := z; <font color=gray>// initialized with 0 at startup</font>
+    <font color=blue>uses</font> inc_func(o); <font color=gray>// use external function inc_func with parameter o</font>
+  }
+
+  <font color=blue>start mode</font> main [<font color=brown>period = 1000ms</font>] {
+    <font color=blue>task</font>
+      <font color=brown>[1]</font> inc();
+    <font color=blue>actuator</font>
+      <font color=brown>[1]</font> a := inc.o; <font color=gray>// set actuator with output of task</font>
+  }
+}
+</pre>
+
+</p>
+
+<p class=f8 align=center style='border-top: 1px solid gray;'>
+Copyright &copy; 2004 <a href="http://www.modecs.cc">MoDECS Team</a>
+</p>
+</div>
+</center>
+</body>

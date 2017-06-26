@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>fodesy</title>
+	
+<style type="text/css">
+<!--
+
+A:link  { color:#0000dd; text-decoration:none; font-weight:bold; }
+A:visited  { color:#0000dd; text-decoration:none; font-weight:bold;}
+A:hover { color:#ff0000; text-decoration:none; font-weight:bold; }
+
+.ital { font-style:italic}
+
+BODY { font-size: 10pt; font-family: Arial, Helvetica, sans-serif; }
+TD { font-size: 10pt; font-family: Arial, Helvetica, sans-serif; }
+
+
+-->
+</style></head>
+
+
+<body>
+<table align="center" width="800">
+ <tbody><tr valign="top">
+ <td colspan="2" align="center"><font size="+2">Fo </font>g <font size="+2">De </font>tection<font size="+2"> Sy </font>stem</td></tr>
+ <tr valign="top">
+ <td width="100">
+ 	<table valign="top">
+	  <tbody><tr><td><a href="">Members</a></td></tr>
+	  <tr><td><a href="">Overview</a></td></tr>
+	  <tr><td><a href="">Engeneering the project</a></td></tr>
+	  <tr><td><a href="">Design issues</a></td></tr>
+	</tbody></table>
+ </td> 
+ <td>
+ <table>
+ 	<tbody><tr><td><h3>Members</h3></td></tr>
+ 	<tr>
+	<td>
+	   Project Members are:
+	   <table cellpadding="2"><tbody><tr> <td>Dittrich Rudi: </td><td class="ital">  rdittrich at cosy,</td></tr>
+	    <tr><td>Findeisen Lutz: </td><td class="ital">lfindeis at cosy, </td></tr>
+	    <tr><td>Gitschthaler Werner: </td><td class="ital"> wgitscht at cosy.</td></tr>	
+	    </tbody></table>
+	</td>
+	</tr>
+ 	<tr><td><h3>Overview</h3></td></tr>
+ 	<tr>
+	<td>
+	<b>Intentions at the begining</b><br>
+	We try to implement a fog detection system, consisiting of 
+	interconnected telos motes. The Fog detection seems to fit perfectly
+	for the different sensors (humidity,temperature and light) provided by the <a href="http://www.moteiv.com/" target="_blank">telos</a> motes.
+	The motes are able to build up an ad hoc network to provide 
+	highest flexibility and easy expansion.<br>
+	The system should work as follows: one mote 
+	detects fog in its area and transmits this informations to all motes in range. 
+	The recieving motes evaluate the information, e.g. the hops the message took ( is the message
+	from the mote which has detected the fog or has it been passed through by motes between the
+	detecting and the recieving mote ) According to these informations the motes can act e.g. turn
+	on warning lights or try to send the message to a control center.
+	</td></tr>
+	<tr><td>
+	<b>What we actually did</b><br>
+	The actual implementation we finally did, does not differ too much from the
+	idea you can read above. The ad hoc network will only work if a master node ( root node )
+	sends out a resync or init message. The information is passed to a laptop which
+	has a mote connected that works as a kind of a network bridge.
+	</td></tr>
+	<tr><td><h3>Engineering the project</h3></td></tr>
+	<td>
+	<b>Intentions at the begining</b><br>
+	We want to implement the project using two different approaches:
+	<ul>Using tinyos</ul>
+	<ul>Direct without overhead</ul>
+	To assure that the project comes to an positve end we first try to implement our <strong>Fog Detection System</strong>
+	using tinyos, the simpler approach, because an abstraction layer is added on top of the
+	MSP430f149 Microcontroller and the sensors. Furthermore TinyOS comes with a special programming language called <strong>nesc</strong>
+	which is a derivat of <strong>C</strong> and allows rapid application development due its modularity. 
+	<br>
+	<br>
+	If there is enough time left we will try to implent the project directly in C
+	to avoid the overhead (see above) that comes with tinyos
+	<br><br>
+		</td></tr>
+	<tr><td>
+	<b>What we actually did</b><br>
+	Implementing the whole system diretly with C did not work out. We realized very soon that it is impossible
+	to write the needed drivers (e.g. radio) in the given time so we pretty soon switched to implement
+	everything in <a href="http://nescc.sourceforge.net/" target="_blank">nesc</a> the language in which tinyos is done. We defined
+	our own little multihop message system, which is not only able to detect the motes in the network but 
+	also provides some, but not very accurate, information where the motes are located, if the motes 
+	are distributed along a street. It would be very interesting to improve this network architecture 
+	to be even more reliable and more accurate about the positions of the motes. <br>
+	For demonstration purpose we used <a href="http://java.sun.com/" target="_blank">Java</a> to implement an application for prove of
+	concept and simulating a street environment. During our tests we not only verified that the multi hop message 
+	protocol works with 3 hops ( meaning to motes are routing a message ) but that it is quite reliable ( the network connection 
+	was never interupted ) which is much more the merit of the really well done telos motes than ours.
+   <tr><td><h3>Design issues</h3></td></tr>
+	<td><b>Intentions at the begining</b><br>
+	It is a fact that the <strong>Fog Detection System</strong> not necessarily follows any real time constraints nevertheless we want to 
+	incoperate some design principles heard in the lectures. As we explained above Tinyos already comes with strong abstraction, therefore
+   only the implementation with c will take advance of e.g. an e-machine.</td></tr>
+   <tr><td>
+   <b>What we actually did</b><br>
+   As mentioned above the Fog detection System is event driven and does not fulfil any real time constraints
+   nor has it to. Therefore an implementation of the e-machine seemed quite senseless and would only
+   cause more complexity and a little bit larger code. Moreover tinyos already comes with high 
+   abstraction ( which includes scheduling ) and as we allready pointed out, we did not implement
+   the pure c version.
+   </td></tr>
+ </tbody></table>
+ </td>
+ </tr>
+</tbody></table>
+</body></html>
